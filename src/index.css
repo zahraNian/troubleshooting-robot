@@ -16,6 +16,7 @@ code {
   --black: #000;
   --orange: #f15a24;
   --blue: #29abe2;
+  --lightBlue: #D1ECFF;
   --yellow: #f9d41e;
   --lightYellow: #fcfcaf;
   --darkRed: #cc155b;
@@ -43,8 +44,7 @@ code {
   --input-borderRadius: 10px;
   --video-borderRadius: 10px;
   --pri: #4410ff;
-  --shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1),
-    0 0 0 0 rgba(0, 0, 0, 0.1);
+  --shadow: 0px 0px 10px 5px #dcdcdc;
 }
 
 
