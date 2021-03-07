@@ -1,5 +1,13 @@
+import { Link } from 'react-router-dom'
 import { useState } from "react";
 import styled from 'styled-components'
+const Column=styled.div({
+    display:'flex',
+    flexDirection:'column',
+    justifyContent:'center',
+    alignItems:'center',
+    width:'100%',
+})    
 const Row=styled.div({
     display:'flex',
     flexFlow:'row wrap',
@@ -8,7 +16,7 @@ const Row=styled.div({
     direction:'rtl',
     backgroundColor:'white',
     borderRadius:'15px',
-    width:'90%',
+    width:'100%',
     minWidth:'260px',
     maxWidth:'922px',
     boxShadow:'var(--shadow)',
@@ -18,7 +26,7 @@ const Row=styled.div({
        padding:'13px 25px 13px 25px',
        margin:'20px 5px 20px 5px',
        width:'295px',
-       minWidth:'200px',
+       minWidth:'190px',
        fontFamily:'var(--text)',
        color:'var(--subText)',
        backgroundColor:'var(--lightGray)',
@@ -40,12 +48,20 @@ const Row=styled.div({
     textAlign:'center'
 }
   })
+  const H2=styled.h2({
+    marginRight:'10px',
+    width:'100%',
+    textAlign:'flex-start'
+})
 export default function Charge(props){
     return(
-        <Row>
-            <input value="کد دانش آموز "></input>
-            <input value='میزان اعتبار'></input>
-            <a  href={props.link} >استعلام</a>
-        </Row>
+        <Column>
+            <H2>شارژ سریع</H2>
+            <Row>
+                <input value="کد دانش آموز "></input>
+                <input value='میزان اعتبار'></input>
+                <Link to={props.link}>استعلام</Link>
+            </Row>
+        </Column>    
     )
 }

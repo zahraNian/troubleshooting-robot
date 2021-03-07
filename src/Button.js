@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 const Column=styled.div({
   display:'flex',
@@ -29,7 +30,6 @@ const Column=styled.div({
       color:'var(--blue)',
       fontFamily:'var(--btnText)',
       fontSize:'15px',
-      marginBottom:'10px',
       padding:'10px 25px 10px 25px',
       boxSizing:'border-box',
       marginBottom:'15px',
@@ -44,7 +44,7 @@ export default function Button(props){
       <Column>
         <div className='number'>{props.number}</div>
         <div className='text'>{props.text}</div>
-        <a  href={props.link} >مشاهده همه</a>
+        <Link to={props.link}>مشاهده همه</Link>
       </Column>
     </div>
   )
