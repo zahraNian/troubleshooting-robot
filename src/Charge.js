@@ -4,9 +4,10 @@ import styled from 'styled-components'
 const Column=styled.div({
     display:'flex',
     flexDirection:'column',
-    justifyContent:'center',
+    justifyContent:'flex-start',
     alignItems:'center',
     width:'calc(100% - 20px)',
+    marginTop:'40px'
 })    
 const Row=styled.div({
     display:'flex',
@@ -18,7 +19,7 @@ const Row=styled.div({
     borderRadius:'15px',
     width:'100%',
     minWidth:'260px',
-    maxWidth:'922px',
+    maxWidth:'925px',
     boxShadow:'var(--shadow)',
    '&>input':{  
        borderRadius:'20px',
@@ -49,21 +50,24 @@ const Row=styled.div({
     margin:'20px 5px 20px 5px',
     fontWeight:'bold',
     textDecoration: 'none',
-    width:'130px',
+    width:'130px'
 }
   })
   const H2=styled.h2({
     marginRight:'10px',
     width:'100%',
-    textAlign:'flex-start'
+    textAlign:'flex-start',
+    fontSize:'20px',
+    marginBottom:'15px',
+    color:'var(--gray)'
 })
 export default function Charge(props){
     return(
         <Column>
             <H2>شارژ سریع</H2>
             <Row>
-                <input value="کد دانش آموز "></input>
-                <input value='میزان اعتبار'></input>
+                <input placeholder='کد دانش آموز' ></input>
+                <input placeholder='میزان اعتبار'></input>
                 <Link to={props.link}>استعلام</Link>
             </Row>
         </Column>    

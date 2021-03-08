@@ -14,6 +14,8 @@ const Total=styled.div({
     width:'calc(100% - 20px)',
     minWidth:'260px',
     maxWidth:'500px',
+    paddingTop:'20px',
+    boxSizing:'border-box'
 })
 const Row=styled.div({
         display:'flex',
@@ -23,7 +25,7 @@ const Row=styled.div({
         width:'100%',
         '&>div':{
             width:'100%',
-            margin:'22px 0px 0px 0px',
+            margin:'0px',
             '&>h2':{
                 color:'var(--subText)',
                 fontSize:'15px',
@@ -54,11 +56,12 @@ const Column=styled.div({
     justifyContent:'center',
     alignItems:'center',
     width:'100%',
-    margin:'20px',
+    margin:'0px 20px',
     '&>div':{
         borderRadius:'none',
         boxShadow:'none',
         width:'100%',
+        height:'110px',
         '&>h2':{
             color:'var(--subText)',
             fontSize:'15px',

@@ -14,6 +14,8 @@ const Total=styled.div({
     width:'calc(100% - 20px)',
     minWidth:'260px',
     maxWidth:'500px',
+    paddingTop:'20px',
+    boxSizing:'border-box'
 })
 const Row=styled.div({
         display:'flex',
@@ -29,11 +31,15 @@ const Column=styled.div({
     alignItems:'center',
     width:'calc(100% - 40px)',
     maxWidth:'500px',
-    margin:'20px',
+    '&>div.title':{
+        margin:'0px 47px',
+        height:'110px'
+    },
     '&>div.newLesson':{
         width:'100%',
         minWidth:'200px',
         maxWidth:'500px',
+        height:'40px',
         justifyContent:'space-between',
         '&>button':{
             width:'155px',
@@ -49,6 +55,7 @@ const Column=styled.div({
         borderRadius:'none',
         boxShadow:'none',
         width:'100%',
+        height:'110px',
         '&>h2':{
             color:'var(--subText)',
             fontSize:'15px',
@@ -75,7 +82,7 @@ const Column=styled.div({
     },
     '&>div.button':{
         justifyContent:'flex-end',
-        margin:'20px',
+        margin:'0px 20px',
         '&>a':{
             borderRadius:'var(--borderRadius-div)',
             backgroundColor:'var(--lightBlue)',
@@ -115,7 +122,7 @@ export default function Teacher(props){
                     <h2>کد معلم</h2>
                     <input onChange={(b)=>setCode(b.target.value)}/>
                 </Column>
-                <Column>
+                <Column className='title'>
                     <Row className='newLesson'><h2>درس</h2><button onClick={DarseJadid}>+درس جدید</button></Row>
                     <input onChange={(c)=>setLesson(c.target.value)}></input>
                 </Column>

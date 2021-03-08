@@ -22,16 +22,21 @@ const Column=styled.div({
   minWidth:'250px',
   '&>h1':{
     width:'100%',
-    textAlign:'right'
+    textAlign:'right',
+    fontFamily:'var(--text)',
   },
   '&>h2':{
     width:'100%',
     textAlign:'right',
-    marginRight:'20px'
+    marginRight:'20px',
+    marginBottom:'0px',
+    fontSize:'20px',
+    color:'var(--gray)'
   },
   '&>div.third':{
     width:'100%',
     justifyContent:'space-between',
+    marginTop:'40px',
     '&>div':{
       
     }

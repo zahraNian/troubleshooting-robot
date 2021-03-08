@@ -7,8 +7,8 @@ const Column=styled.div({
   alignItems:'center',
   backgroundColor:'white',
   borderRadius:'20px',
-  width:'220px',
-  margin:'7px',
+  width:'215px',
+  margin:'10px',
   boxShadow:'var(--shadow)',
   '&>div.number':{
     fontFamily:'var(--text)',
