@@ -6,7 +6,7 @@ const Column=styled.div({
     flexDirection:'column',
     justifyContent:'center',
     alignItems:'center',
-    width:'100%',
+    width:'calc(100% - 20px)',
 })    
 const Row=styled.div({
     display:'flex',
@@ -23,15 +23,18 @@ const Row=styled.div({
    '&>input':{  
        borderRadius:'20px',
        fontSize:'15px',
-       padding:'13px 25px 13px 25px',
+       height:'40px',
        margin:'20px 5px 20px 5px',
-       width:'295px',
-       minWidth:'190px',
+       width:'calc(100% - 35px)',
+       minWidth:'130px',
+       maxWidth:'365px',
        fontFamily:'var(--text)',
        color:'var(--subText)',
        backgroundColor:'var(--lightGray)',
        border:'none',
-       fontWeight:'bold'
+       fontWeight:'bold',
+       paddingRight:'20px',
+       boxSizing:'border-box'
    },
    '&>a':{
     borderRadius:'var(--borderRadius-div)',
@@ -39,13 +42,14 @@ const Row=styled.div({
     color:'var(--blue)',
     fontFamily:'var(--btnText)',
     fontSize:'15px',
-    padding:'13px 25px 13px 25px',
+    height:'40px',
+    textAlign:'center',
+    paddingTop:'10px',
     boxSizing:'border-box',
     margin:'20px 5px 20px 5px',
     fontWeight:'bold',
     textDecoration: 'none',
     width:'130px',
-    textAlign:'center'
 }
   })
   const H2=styled.h2({

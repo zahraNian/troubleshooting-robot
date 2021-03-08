@@ -18,43 +18,33 @@ const Total=styled.div({
 const Row=styled.div({
         display:'flex',
         flexDirection:'row',
-        justifyContent:'space-between',
+        justifyContent:'center',
         alignItems:'center',
-        width:'100%',
-        '&>div':{
-            width:'100%',
-            margin:'22px 0px 0px 0px',
-            '&>h2':{
-                color:'var(--subText)',
-                fontSize:'15px',
-                width:'100%',
-                textAlign:'right',
-
-            },
-            '&>input':{
-                borderRadius:'20px',
-                fontSize:'20px',
-                width:'100%',
-                minWidth:'100px',
-                maxWidth:'200px',
-                fontFamily:'var(--text)',
-                backgroundColor:'var(--lightGray)',
-                border:'none',
-                fontWeight:'bold',
-                height:'50px',
-                paddingRight:'20px',
-                boxSizing:'border-box',
-                color:'var(--gray)'
-            }
-        }
+        width:'100%'
     })
 const Column=styled.div({
     display:'flex',
     flexDirection:'column',
     justifyContent:'center',
     alignItems:'center',
-    width:'100%',
+    width:'calc(100% - 40px)',
+    maxWidth:'500px',
     margin:'20px',
+    '&>div.newLesson':{
+        width:'100%',
+        minWidth:'200px',
+        maxWidth:'500px',
+        justifyContent:'space-between',
+        '&>button':{
+            width:'155px',
+            backgroundColor:'white',
+            border:'none',
+            color:'blue',
+            cursor:'pointer',
+            fontSize:'15px',
+            fontWeight:'bold',
+        }
+    },
     '&>div':{
         borderRadius:'none',
         boxShadow:'none',
@@ -62,16 +52,16 @@ const Column=styled.div({
         '&>h2':{
             color:'var(--subText)',
             fontSize:'15px',
-            width:'100%',
             textAlign:'right',
+            width:'100%',
             minWidth:'200px',
-            maxWidth:'430px'
+            maxWidth:'430px',
         },
         '&>input':{
             borderRadius:'20px',
             fontSize:'20px',
             width:'100%',
-            minWidth:'200px',
+            minWidth:'220px',
             maxWidth:'450px',
             fontFamily:'var(--text)',
             backgroundColor:'var(--lightGray)',
@@ -80,11 +70,12 @@ const Column=styled.div({
             height:'50px',
             paddingRight:'20px',
             boxSizing:'border-box',
-            color:'var(--gray)'
+            color:'var(--gray)',
         }
     },
     '&>div.button':{
         justifyContent:'flex-end',
+        margin:'20px',
         '&>a':{
             borderRadius:'var(--borderRadius-div)',
             backgroundColor:'var(--lightBlue)',
@@ -103,41 +94,35 @@ const Column=styled.div({
         }
     }    
 })
-export default function Srudent(props){  
-    const [Name,setName]=useState([])
-    const [Code,setCode]=useState([])
-    const [Grade,setGrade]=useState([])
-    const [Majors,setMajors]=useState([]) 
-    const [Credit,setCredit]=useState([]) 
+export default function Teacher(props){  
+    const [Name,setName]=useState()
+    const [Code,setCode]=useState()
+    const [Lesson,setLesson]=useState()
+    const [arr,setArr]=useState([]) 
+    const DarseJadid=(Lesson)=>{
+        let _arr=arr 
+        _arr.push(Lesson.target.value)
+        setArr(_arr)
+    }
     return(
         <Total>
             <Column>
                 <Column>
-                    <h2>نام دانش آموز</h2>
-                    <input onChange={(b)=>setCode(b.target.value)}></input>
+                    <h2>نام معلم</h2>
+                    <input  onChange={(a)=>setName(a.target.value)}></input>
                 </Column>
                 <Column>
-                    <h2>کد دانش آموز</h2>
-                    <input onChange={(b)=>setCode(b.target.value)}></input>
+                    <h2>کد معلم</h2>
+                    <input onChange={(b)=>setCode(b.target.value)}/>
                 </Column>
-                <Row>
-                    <Column>
-                        <h2>پایه</h2>
-                        <input onChange={(b)=>setCode(b.target.value)}></input>
-                    </Column>
-                    <Column>
-                        <h2>رشته</h2>
-                        <input onChange={(b)=>setCode(b.target.value)}></input>
-                    </Column>
-                </Row>
                 <Column>
-                    <h2>اعتبار</h2>
-                    <input onChange={(d)=>setCode(d.target.value)}></input>
+                    <Row className='newLesson'><h2>درس</h2><button onClick={DarseJadid}>+درس جدید</button></Row>
+                    <input onChange={(c)=>setLesson(c.target.value)}></input>
                 </Column>
                 <Row className='button'>
                     <Link to={props.link}>ثبت</Link>
                 </Row>
             </Column>
-        </Total>
+        </Total>    
     )
 }
