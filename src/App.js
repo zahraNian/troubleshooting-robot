@@ -23,13 +23,16 @@ const Column=styled.div({
   '&>h1':{
     width:'100%',
     textAlign:'right',
-    fontFamily:'var(--text)',
+    fontFamily:'title',
+    paddingTop:'70px',
+    marginRight:'30px'
   },
   '&>h2':{
     width:'100%',
     textAlign:'right',
     marginRight:'20px',
     marginBottom:'0px',
+    fontFamily:'title',
     fontSize:'20px',
     color:'var(--gray)'
   },
@@ -52,20 +55,20 @@ export default function App(){
           <h1 > ربات رفع اشکال بارسا </h1>
           <h2>امار در یک نگاه</h2>
           <Row>
-            <Button number="۲۴۳" text="دانش آموز"  />
-            <Button number="۴۱" text="معلم" />
-            <Button number="۷۶۵" text="سوال" />
-            <Button number="۹۸۰" text="اعتبار" />
+            <Button number={global.convertNumberFromEtoP(243)} text="دانش آموز"  />
+            <Button number={global.convertNumberFromEtoP(41)} text="معلم" />
+            <Button number={global.convertNumberFromEtoP(765)} text="سوال" />
+            <Button number={global.convertNumberFromEtoP(980)} text="اعتبار" />
           </Row>
           <Charge/>
           <Row className="third">
             <Column>
-              <h2>ثبت نام دانش آموز</h2>
-              <Student name='سالار رضاپور' code='123456' grade='دهم' majors='تجربی' credit='60'></Student>
+              <h2>دانش آموز جدید</h2>
+              <Student />
             </Column>
             <Column>
-              <h2>ثبت نام معلم</h2>
-              <Teacher name='سالار رضاپور' code='123456'  lesson='تجربی'></Teacher>
+              <h2>معلم جدید</h2>
+              <Teacher/>
             </Column>
           </Row>
         </Column>

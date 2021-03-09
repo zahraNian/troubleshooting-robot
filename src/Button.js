@@ -10,6 +10,7 @@ const Column=styled.div({
   width:'215px',
   margin:'10px',
   boxShadow:'var(--shadow)',
+  fontFamily:'title',
   '&>div.number':{
     fontFamily:'var(--text)',
       fontSize:'35px',
@@ -17,7 +18,7 @@ const Column=styled.div({
       marginTop:'15px',
   },
   '&>div.text':{
-    fontFamily:'var(--text)',
+    fontFamily:'text',
     fontSize:'20px',
     fontWeight:'bold',
     marginBottom:'20px',
@@ -28,7 +29,7 @@ const Column=styled.div({
       borderRadius:'var(--borderRadius-div)',
       backgroundColor:'var(--lightBlue)',
       color:'var(--blue)',
-      fontFamily:'var(--btnText)',
+      fontFamily:'btnText',
       fontSize:'15px',
       width:'150px',
       height:'40px',

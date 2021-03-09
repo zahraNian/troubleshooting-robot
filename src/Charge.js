@@ -41,7 +41,7 @@ const Row=styled.div({
     borderRadius:'var(--borderRadius-div)',
     backgroundColor:'var(--lightBlue)',
     color:'var(--blue)',
-    fontFamily:'var(--btnText)',
+    fontFamily:'btnText',
     fontSize:'15px',
     height:'40px',
     textAlign:'center',
@@ -59,15 +59,18 @@ const Row=styled.div({
     textAlign:'flex-start',
     fontSize:'20px',
     marginBottom:'15px',
-    color:'var(--gray)'
+    color:'var(--gray)',
+    fontFamily:'title',
 })
 export default function Charge(props){
+    const[code, setCode]=useState()
+    const [credit, setCredit]=useState()
     return(
         <Column>
             <H2>شارژ سریع</H2>
             <Row>
-                <input placeholder='کد دانش آموز' ></input>
-                <input placeholder='میزان اعتبار'></input>
+                <input placeholder='کد دانش آموز' onChange={(a)=>setCode(global.convertNumberFromPtoE(a.target.value))}></input>
+                <input placeholder='میزان اعتبار' onChange={(b)=>setCredit(global.convertNumberFromPtoE(b.target.value))}></input>
                 <Link to={props.link}>استعلام</Link>
             </Row>
         </Column>    

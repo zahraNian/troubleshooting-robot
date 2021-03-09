@@ -15,7 +15,7 @@ const Total=styled.div({
     minWidth:'260px',
     maxWidth:'500px',
     paddingTop:'20px',
-    boxSizing:'border-box'
+    boxSizing:'border-box',
 })
 const Row=styled.div({
         display:'flex',
@@ -92,7 +92,7 @@ const Column=styled.div({
             borderRadius:'var(--borderRadius-div)',
             backgroundColor:'var(--lightBlue)',
             color:'var(--blue)',
-            fontFamily:'var(--btnText)',
+            fontFamily:'btnText',
             fontSize:'15px',
             height:'40px',
             textAlign:'center',
@@ -117,25 +117,25 @@ export default function Srudent(props){
             <Column>
                 <Column>
                     <h2>نام دانش آموز</h2>
-                    <input onChange={(b)=>setCode(b.target.value)}></input>
+                    <input placeholder='سالار رضاپور' onChange={(b)=>setCode(b.target.value)}></input>
                 </Column>
                 <Column>
                     <h2>کد دانش آموز</h2>
-                    <input onChange={(b)=>setCode(b.target.value)}></input>
+                    <input placeholder={global.convertNumberFromEtoP(123456)} onChange={(b)=>setCode(global.convertNumberFromPtoE(b.target.value))}></input>
                 </Column>
                 <Row>
                     <Column>
                         <h2>پایه</h2>
-                        <input onChange={(b)=>setCode(b.target.value)}></input>
+                        <input placeholder='دهم' onChange={(b)=>setCode(b.target.value)}></input>
                     </Column>
                     <Column>
                         <h2>رشته</h2>
-                        <input onChange={(b)=>setCode(b.target.value)}></input>
+                        <input placeholder='تجربی' onChange={(b)=>setCode(b.target.value)}></input>
                     </Column>
                 </Row>
                 <Column>
                     <h2>اعتبار</h2>
-                    <input onChange={(d)=>setCode(d.target.value)}></input>
+                    <input placeholder={global.convertNumberFromEtoP(60)}  onChange={(d)=>setCode(global.convertNumberFromPtoE(d.target.value))}></input>
                 </Column>
                 <Row className='button'>
                     <Link to={props.link}>ثبت</Link>

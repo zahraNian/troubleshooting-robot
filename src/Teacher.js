@@ -87,7 +87,7 @@ const Column=styled.div({
             borderRadius:'var(--borderRadius-div)',
             backgroundColor:'var(--lightBlue)',
             color:'var(--blue)',
-            fontFamily:'var(--btnText)',
+            fontFamily:'btnText',
             fontSize:'15px',
             height:'40px',
             textAlign:'center',
@@ -116,15 +116,15 @@ export default function Teacher(props){
             <Column>
                 <Column>
                     <h2>نام معلم</h2>
-                    <input  onChange={(a)=>setName(a.target.value)}></input>
+                    <input placeholder='سالار رضاپور' onChange={(a)=>setName(a.target.value)}></input>
                 </Column>
                 <Column>
                     <h2>کد معلم</h2>
-                    <input onChange={(b)=>setCode(b.target.value)}/>
+                    <input placeholder={global.convertNumberFromEtoP(123456)}  onChange={(b)=>setCode(global.convertNumberFromPtoE(b.target.value))}/>
                 </Column>
                 <Column className='title'>
                     <Row className='newLesson'><h2>درس</h2><button onClick={DarseJadid}>+درس جدید</button></Row>
-                    <input onChange={(c)=>setLesson(c.target.value)}></input>
+                    <input placeholder='تجربی' onChange={(c)=>setLesson(c.target.value)}></input>
                 </Column>
                 <Row className='button'>
                     <Link to={props.link}>ثبت</Link>
