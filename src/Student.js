@@ -31,7 +31,6 @@ const Row=styled.div({
                 fontSize:'15px',
                 width:'100%',
                 textAlign:'right',
-
             },
             '&>input':{
                 borderRadius:'20px',
