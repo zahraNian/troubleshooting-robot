@@ -67,3 +67,6 @@ code {
   font-family: "btnText";
   src: url(./assets/font/iranyekanweblight.woff);
 }
+*{
+  outline: none;
+}

@@ -38,7 +38,7 @@ const Row=styled.div({
                 width:'100%',
                 minWidth:'100px',
                 maxWidth:'200px',
-                fontFamily:'var(--text)',
+                fontFamily:'text',
                 backgroundColor:'var(--lightGray)',
                 border:'none',
                 fontWeight:'bold',

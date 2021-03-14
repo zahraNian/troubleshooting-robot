@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import styled from 'styled-components'
 import './App.css'
 import React from 'react';
@@ -29,7 +29,7 @@ const Column=styled.div({
     textAlign:'center',
     boxShadow:'var(--shadow)',
     '&>h1':{
-        margin:'0px 0px 40px 0px',
+        margin:'0px 20px 40px 20px',
         fontFamily:'title',
         color:'var(--gray)',
         fontSize:'25px'
@@ -41,7 +41,7 @@ const Column=styled.div({
     width:'90%',
     maxWidth:'38000px',
     minWidth:'240px',
-    fontFamily:'var(--text)',
+    fontFamily:'text',
     backgroundColor:'var(--lightGray)',
     border:'none',
     fontWeight:'bold',
@@ -67,7 +67,8 @@ const Column=styled.div({
     textDecoration: 'none',
     width:'130px',
     textAlign:'center',
-    border:'none'
+    border:'none',
+
   })
 export default function Login(){
     const[userName, setUserName]=useState()
@@ -91,7 +92,7 @@ export default function Login(){
                 <Column>
                     <h1>پنل مدیریت ربات رفع اشکال بارسا</h1>
                     <Input placeholder='نام کاربری' onChange={(a)=>setUserName(a.target.value)}></Input>
-                    <Input placeholder='کلمه عبور' onChange={(b)=>setPass((b.target.value))}></Input>
+                    <Input type='passWord' placeholder='کلمه عبور' onChange={(b)=>setPass((b.target.value))}></Input>
                     <Button  onClick={logIn}>ورود</Button>
                 </Column>
         </Container>
