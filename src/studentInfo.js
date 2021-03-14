@@ -36,7 +36,8 @@ const Column=styled.div({
         
     },
     '&>div.B':{
-        justifyContent:'flex-end'
+        justifyContent:'flex-end',
+        width:'calc(100% - 20px)'
     }
   })
   const Row=styled.div({
@@ -58,8 +59,8 @@ const Column=styled.div({
   const LargeInput=styled.input({
         borderRadius:'20px',
         fontSize:'20px',
-        width:'100%',
-        minWidth:'300px',
+        width:'calc(100% - 20px)',
+        minWidth:'280px',
         fontFamily:'text',
         backgroundColor:'var(--lightGray)',
         border:'none',
@@ -72,8 +73,8 @@ const Column=styled.div({
   const SmallInput=styled.input({
         borderRadius:'20px',
         fontSize:'20px',
-        width:'100%',
-        minWidth:'140px',
+        width:'calc(100% - 20px)',
+        minWidth:'135px',
         fontFamily:'text',
         backgroundColor:'var(--lightGray)',
         border:'none',

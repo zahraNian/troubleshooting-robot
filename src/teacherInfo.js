@@ -13,7 +13,7 @@ const Container=styled.div({
     '&>div.Content':{
         borderRadius:'25px',
         boxShadow:'var(--Shadow)',
-        width:'calc(100% - 40px)'
+        width:'calc(100% - 40px)',
     }
 })
 const Column=styled.div({
@@ -36,7 +36,8 @@ const Column=styled.div({
         justifyContent:'space-around', 
     },
     '&>div.B':{
-        justifyContent:'flex-end'
+        justifyContent:'flex-end',
+        width:'calc(100% - 20px)'
     }
   })
   const Row=styled.div({
@@ -54,8 +55,8 @@ const Column=styled.div({
   const LargeInput=styled.input({
         borderRadius:'20px',
         fontSize:'20px',
-        width:'100%',
-        minWidth:'300px',
+        width:'calc(100% - 20px)',
+        minWidth:'280px',
         fontFamily:'text',
         backgroundColor:'var(--lightGray)',
         border:'none',
