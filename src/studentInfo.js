@@ -47,20 +47,21 @@ const Column=styled.div({
         alignItems:'center',
         width:'100%',
         '&>div.Small':{
-            maxWidth:'345px',
+            maxWidth:'355px',
             marginTop:'20px'
         },
         '&>div.RowBigColumn':{
             padding:'30px 10px 50px 10px',
-            maxWidth:'730px',
-            borderRadius:'25px'
+            boxSizing:'border-box',
+            maxWidth:'760px',
+            borderRadius:'15px'
         }
   })
   const LargeInput=styled.input({
         borderRadius:'20px',
         fontSize:'20px',
         width:'calc(100% - 20px)',
-        minWidth:'280px',
+        minWidth:'260px',
         fontFamily:'text',
         backgroundColor:'var(--lightGray)',
         border:'none',
@@ -74,7 +75,7 @@ const Column=styled.div({
         borderRadius:'20px',
         fontSize:'20px',
         width:'calc(100% - 20px)',
-        minWidth:'135px',
+        minWidth:'130px',
         fontFamily:'text',
         backgroundColor:'var(--lightGray)',
         border:'none',

@@ -38,6 +38,26 @@ const Column=styled.div({
     '&>div.B':{
         justifyContent:'flex-end',
         width:'calc(100% - 20px)'
+    },
+    '&>div.newLesson':{
+        width:'calc(100% - 20px)',
+        minWidth:'240px',
+        height:'40px',
+        marginRight:'20px',
+        marginLeft:'10px',
+        '&>h2':{
+            marginRight:'0px',
+        },
+        '&>button':{
+            width:'100px',
+            backgroundColor:'white',
+            border:'none',
+            color:'blue',
+            cursor:'pointer',
+            fontSize:'15px',
+            fontWeight:'bold',
+        }
+ 
     }
   })
   const Row=styled.div({
@@ -48,15 +68,16 @@ const Column=styled.div({
         width:'100%',
         '&>div.RowBigColumn':{
             padding:'30px 10px 50px 10px',
-            maxWidth:'730px',
-            borderRadius:'25px'
+            boxSizing:'border-box',
+            maxWidth:'760px',
+            borderRadius:'15px'
         }
   })
   const LargeInput=styled.input({
         borderRadius:'20px',
         fontSize:'20px',
         width:'calc(100% - 20px)',
-        minWidth:'280px',
+        minWidth:'260px',
         fontFamily:'text',
         backgroundColor:'var(--lightGray)',
         border:'none',
@@ -69,7 +90,7 @@ const Column=styled.div({
   const Title=styled.h2({
       width:'100%',
       textAlign:'right',
-      marginRight:'40px',
+      marginRight:'30px',
       fontSize:'15px',
   })
   const Button=styled.button({
@@ -108,6 +129,12 @@ export default function TeacherInfo(){
     const[Lesson, setLesson]=useState()
     const[Code, setCode]=useState()
     const[Question, setQuestion]=useState()
+    const[arr,setArr]=useState([])
+    const DarseJadid=(Lesson)=>{
+        let _arr=arr 
+        _arr.push(Lesson.target.value)
+        setArr(_arr)
+    }
     return(
         <Container>
             <H1>ربات رفع اشکال بارسا</H1>
@@ -120,7 +147,7 @@ export default function TeacherInfo(){
                             <LargeInput placeholder='سالار رضاپور' onChange={(a)=>setName(a.target.value)}></LargeInput>
                         </Column>
                         <Column className='Large'>
-                            <Title>دروس</Title>
+                        <Row className='newLesson'><Title>درس</Title><button onClick={DarseJadid}>+درس جدید</button></Row>
                             <LargeInput placeholder='عربی' onChange={(b)=>setLesson(b.target.value)}></LargeInput>
                         </Column>
                     </Column>
