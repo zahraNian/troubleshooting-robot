@@ -58,7 +58,6 @@ const Column=styled.div({
             fontSize:'15px',
             fontWeight:'bold',
         }
- 
     }
   })
   const Row=styled.div({
@@ -86,7 +85,8 @@ const Column=styled.div({
         height:'50px',
         paddingRight:'20px',
         boxSizing:'border-box',
-        color:'var(--gray)'
+        color:'var(--gray)',
+        marginTop:'10px'
   })
   const Title=styled.h2({
       width:'100%',
@@ -131,11 +131,14 @@ export default function TeacherInfo(){
     const[Code, setCode]=useState()
     const[Question, setQuestion]=useState()
     const[arr,setArr]=useState([])
-    const DarseJadid=(Lesson)=>{
+    const DarseJadid=()=>{
         let _arr=arr 
-        _arr.push(Lesson.target.value)
+        _arr.push({name:Lesson.target})
         setArr(_arr)
     }
+    const LessonReturner=()=>{return arr.map((item)=>{return(<LargeInput>
+        {item.name}
+      </LargeInput>)})}
     return(
         <Container>
             <H1>ربات رفع اشکال بارسا</H1>
@@ -150,6 +153,7 @@ export default function TeacherInfo(){
                         <Column className='Large'>
                         <Row className='newLesson'><Title>درس</Title><button onClick={DarseJadid}>+درس جدید</button></Row>
                             <LargeInput placeholder='عربی' onChange={(b)=>setLesson(b.target.value)}></LargeInput>
+                            {LessonReturner()}
                         </Column>
                     </Column>
                     <Column className='RowBigColumn'>

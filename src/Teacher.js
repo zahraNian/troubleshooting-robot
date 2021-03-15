@@ -13,7 +13,7 @@ const Total=styled.div({
     margin:'15px',
     width:'calc(100% - 20px)',
     minWidth:'260px',
-    maxWidth:'500px',
+    maxWidth:'440px',
     paddingTop:'20px',
     boxSizing:'border-box'
 })
@@ -69,7 +69,7 @@ const Column=styled.div({
             fontSize:'20px',
             width:'100%',
             minWidth:'220px',
-            maxWidth:'450px',
+            maxWidth:'440px',
             fontFamily:'var(--text)',
             backgroundColor:'var(--lightGray)',
             border:'none',

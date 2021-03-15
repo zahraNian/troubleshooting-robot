@@ -82,7 +82,7 @@ export default function Login(){
         let name=localStorage.getItem('نام کاربری')
         let pass=localStorage.getItem('رمز عبور')
         if(name === userName && pass === passWord){
-        history.push("/page")
+        history.push("/home")
         localStorage.setItem('isLogin',true)
         }
       }

@@ -11,11 +11,10 @@ import StudentsList from './studentsList.js'
 export default function App(){
   return(
     <Router>
+      <TeacherInfo/>
       <Switch>
-        <Route path='/studentsList' component={StudentsList}></Route>
-        <Route path='/teacherList' component={TeachersList}></Route>
-        <Route path='/login' component={Login}></Route>
-        <Route render={()=>localStorage.getItem('isLogin') ? (<Route path='/' component={Page}></Route>) : (<Redirect to={{pathname:'/login'}}/>)}/>
+        <Route path='/login' component={Login} exact></Route>
+        <Route render={()=>localStorage.getItem('isLogin') ? (<Route path='/home' component={Page}></Route>) : (<Redirect to={{pathname:'/login'}}/>)}/>
       </Switch>
     </Router>
   )

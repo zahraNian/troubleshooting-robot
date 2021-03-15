@@ -13,9 +13,9 @@ const Total=styled.div({
     margin:'15px',
     width:'calc(100% - 20px)',
     minWidth:'260px',
-    maxWidth:'460px',
+    maxWidth:'440px',
     paddingTop:'20px',
-    boxSizing:'border-box'
+    boxSizing:'border-box',
 })
 const Row=styled.div({
         display:'flex',
@@ -26,11 +26,11 @@ const Row=styled.div({
         '&>div':{
             width:'100%',
             margin:'10px',
-            width:'210px',
+            width:'200px',
             '&>h2':{
                 color:'var(--subText)',
                 fontSize:'15px',
-                width:'100%',
+                width:'calc(100% - 10px)',
                 textAlign:'right',
             },
             '&>input':{
@@ -38,7 +38,7 @@ const Row=styled.div({
                 fontSize:'20px',
                 width:'calc(100% - 10px)',
                 minWidth:'95px',
-                maxWidth:'195px',
+                maxWidth:'180px',
                 fontFamily:'text',
                 backgroundColor:'var(--lightGray)',
                 border:'none',
@@ -65,17 +65,17 @@ const Column=styled.div({
         '&>h2':{
             color:'var(--subText)',
             fontSize:'15px',
-            width:'100%',
+            width:'calc(100% - 30px)',
             textAlign:'right',
             minWidth:'200px',
-            maxWidth:'430px'
+            maxWidth:'400px'
         },
         '&>input':{
             borderRadius:'20px',
             fontSize:'20px',
             width:'calc(100% - 30px)',
             minWidth:'220px',
-            maxWidth:'420px',
+            maxWidth:'400px',
             fontFamily:'var(--text)',
             backgroundColor:'var(--lightGray)',
             border:'none',

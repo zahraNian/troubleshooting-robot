@@ -5,6 +5,8 @@ import Charge from './Charge.js'
 import Student from './Student.js'
 import Teacher from './Teacher.js'
 import {BrowserRouter as Router,Route, Switch} from 'react-router-dom'
+import TeachersList from './teachersList.js'
+import StudentsList from './studentsList.js'
 
 const Row=styled.div({
   display:'flex',
@@ -47,29 +49,35 @@ const Column=styled.div({
 export default function Page(){
   return(
     <Router>
-      <Row> 
-        <Column>
-          <h1 > ربات رفع اشکال بارسا </h1>
-          <h2>امار در یک نگاه</h2>
-          <Row>
-            <Button number={global.convertNumberFromEtoP(243)} text="دانش آموز" link='/studentsList'/>
-            <Button number={global.convertNumberFromEtoP(41)} text="معلم"  link='/teachersList'/>
-            <Button number={global.convertNumberFromEtoP(765)} text="سوال" />
-            <Button number={global.convertNumberFromEtoP(980)} text="اعتبار" />
-          </Row>
-          <Charge/>
-          <Row className="third">
+      <Switch>
+        <Route path='/home'>
+          <Row> 
             <Column>
-              <h2>دانش آموز جدید</h2>
-              <Student />
-            </Column>
-            <Column>
-              <h2>معلم جدید</h2>
-              <Teacher/>
-            </Column>
-          </Row>
-        </Column>
-      </Row>  
+            <h1 > ربات رفع اشکال بارسا </h1>
+            <h2>آمار در یک نگاه</h2>
+            <Row>
+              <Button number={global.convertNumberFromEtoP(243)} text="دانش آموز" link='/studentsList'/>
+              <Button number={global.convertNumberFromEtoP(41)} text="معلم"  link='/teacherList'/>
+              <Button number={global.convertNumberFromEtoP(765)} text="سوال" />
+              <Button number={global.convertNumberFromEtoP(980)} text="اعتبار" />
+            </Row>
+            <Charge/>
+            <Row className="third">
+              <Column>
+                <h2>دانش آموز جدید</h2>
+                <Student />
+              </Column>
+              <Column>
+                <h2>معلم جدید</h2>
+                <Teacher/>
+              </Column>
+            </Row>
+          </Column>
+        </Row> 
+      </Route>
+        <Route path='/studentsList' component={StudentsList}></Route>
+        <Route path='/teacherList' component={TeachersList}></Route>
+      </Switch> 
     </Router>   
   )
 }
