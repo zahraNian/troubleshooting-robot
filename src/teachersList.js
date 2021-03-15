@@ -92,30 +92,57 @@ const Row=styled.div({
     justifyContent:'space-between',
     alignItems:'flex-start',
     width:'100%',
-    '&>div.first':{
+})    
+const First=styled.div({
         marginRight:'20px',
         marginTop:'13px',
         width:'65%',
         textAlign:'right',
-    },
-    '&>div.second':{
+})
+const Second=styled.div({
         marginTop:'13px',
         width:'60%',
         textAlign:'right'
-    },
-    '&>div.third':{
+})
+const Third=styled.div({
         marginTop:'13px',
         width:'83%',
         textAlign:'right'
-    },
-    '&>div.fourth':{
+})
+const Fourth=styled.div({
         marginLeft:'20px',
         marginTop:'13px',
         width:'12%',
         textAlign:'right'
-    }
-})    
+})
 export default function TeacherList(){
+    let arr=[{
+        name:'سالار رضاپور',
+        code:global.convertNumberFromEtoP('123456'),
+        lesson:'ریاضی-دیفرانسیل-گسسته-آمار',
+        question:global.convertNumberFromEtoP('18'),
+    },
+    {
+        name:'سالار رضاپور',
+        code:global.convertNumberFromEtoP('123456'),
+        lesson:'ریاضی-دیفرانسیل-گسسته-آمار',
+        question:global.convertNumberFromEtoP('18'),
+    },
+    {
+        name:'سالار رضاپور',
+        code:global.convertNumberFromEtoP('123456'),
+        lesson:'ریاضی-دیفرانسیل-گسسته-آمار',
+        question:global.convertNumberFromEtoP('18'),
+    },
+    ]
+    const StudentReturner=()=>{return arr.map((item)=>{return(<InfoDiv>
+                                                                <Row>  
+                                                                    <First>{item.name}</First>
+                                                                    <Second>{item.code}</Second> 
+                                                                    <Third>{item.lesson}</Third> 
+                                                                    <Fourth>{item.question}</Fourth>
+                                                                </Row>
+                                                            </InfoDiv>)})}
     return(
         <Container>
             <H1>ربات رفع اشکال بارسا</H1>
@@ -123,36 +150,13 @@ export default function TeacherList(){
             <Column className='Content'>
                 <TitleDiv>
                     <Row>
-                        <div className='first'>نام</div>
-                        <div className='second'>کد</div>
-                        <div className='third'>دروس</div>
-                        <div className='fourth'>سوالات</div>
+                        <First>نام</First>
+                        <Second>کد</Second>
+                        <Third>دروس</Third>
+                        <Fourth>سوالات</Fourth>
                     </Row>
                 </TitleDiv>
-                <InfoDiv>
-                    <Row>
-                        <div className='first'>سالار رضاپور</div>
-                        <div className='second'>{global.convertNumberFromEtoP(123456)}</div>
-                        <div className='third'>ریاضی-دیفرانسیل-گسسته-آمار</div>
-                        <div className='fourth'>{global.convertNumberFromEtoP(18)}</div>
-                    </Row>
-                </InfoDiv>
-                <InfoDiv>
-                    <Row>
-                        <div className='first'>سالار رضاپور</div>
-                        <div className='second'>{global.convertNumberFromEtoP(123456)}</div>
-                        <div className='third'>علوم-زیست-شیمی</div>
-                        <div className='fourth'>{global.convertNumberFromEtoP(18)}</div>
-                    </Row>
-                </InfoDiv>
-                <InfoDiv>
-                    <Row>
-                        <div className='first'>سالار رضاپور</div>
-                        <div className='second'>{global.convertNumberFromEtoP(123456)}</div>
-                        <div className='third'>دینی-ادبیات</div>
-                        <div className='fourth'>{global.convertNumberFromEtoP(18)}</div>
-                    </Row>
-                </InfoDiv>
+                {StudentReturner()}
             </Column>
         </Container> 
     )

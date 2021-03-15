@@ -13,9 +13,9 @@ const Total=styled.div({
     margin:'15px',
     width:'calc(100% - 20px)',
     minWidth:'260px',
-    maxWidth:'500px',
+    maxWidth:'460px',
     paddingTop:'20px',
-    boxSizing:'border-box',
+    boxSizing:'border-box'
 })
 const Row=styled.div({
         display:'flex',
@@ -25,7 +25,8 @@ const Row=styled.div({
         width:'100%',
         '&>div':{
             width:'100%',
-            margin:'0px',
+            margin:'10px',
+            width:'210px',
             '&>h2':{
                 color:'var(--subText)',
                 fontSize:'15px',
@@ -35,9 +36,9 @@ const Row=styled.div({
             '&>input':{
                 borderRadius:'20px',
                 fontSize:'20px',
-                width:'100%',
-                minWidth:'100px',
-                maxWidth:'200px',
+                width:'calc(100% - 10px)',
+                minWidth:'95px',
+                maxWidth:'195px',
                 fontFamily:'text',
                 backgroundColor:'var(--lightGray)',
                 border:'none',
@@ -72,9 +73,9 @@ const Column=styled.div({
         '&>input':{
             borderRadius:'20px',
             fontSize:'20px',
-            width:'100%',
-            minWidth:'200px',
-            maxWidth:'450px',
+            width:'calc(100% - 30px)',
+            minWidth:'220px',
+            maxWidth:'420px',
             fontFamily:'var(--text)',
             backgroundColor:'var(--lightGray)',
             border:'none',
@@ -82,11 +83,14 @@ const Column=styled.div({
             height:'50px',
             paddingRight:'20px',
             boxSizing:'border-box',
-            color:'var(--gray)'
+            color:'var(--gray)',
         }
     },
     '&>div.button':{
         justifyContent:'flex-end',
+        width:'calc(100% - 30px)',
+        minWidth:'220px',
+        maxWidth:'420px',
         '&>a':{
             borderRadius:'var(--borderRadius-div)',
             backgroundColor:'var(--lightBlue)',

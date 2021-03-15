@@ -52,8 +52,8 @@ export default function Page(){
           <h1 > ربات رفع اشکال بارسا </h1>
           <h2>امار در یک نگاه</h2>
           <Row>
-            <Button number={global.convertNumberFromEtoP(243)} text="دانش آموز"  />
-            <Button number={global.convertNumberFromEtoP(41)} text="معلم" />
+            <Button number={global.convertNumberFromEtoP(243)} text="دانش آموز" link='/studentsList'/>
+            <Button number={global.convertNumberFromEtoP(41)} text="معلم"  link='/teachersList'/>
             <Button number={global.convertNumberFromEtoP(765)} text="سوال" />
             <Button number={global.convertNumberFromEtoP(980)} text="اعتبار" />
           </Row>
