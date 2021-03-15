@@ -45,6 +45,7 @@ const Column=styled.div({
         height:'40px',
         marginRight:'20px',
         marginLeft:'10px',
+        marginTop:'5px',
         '&>h2':{
             marginRight:'0px',
         },

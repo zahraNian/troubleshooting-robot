@@ -84,7 +84,8 @@ const InfoDiv=styled.div({
     width:'calc(100% - 20px)',
     borderRadius:'30px',
     fontSize:'12px',
-    paddingBottom:'5px'
+    paddingBottom:'5px',
+    boxSizing:'border-box'
 })
 const Row=styled.div({
     display:'flex',
@@ -92,95 +93,99 @@ const Row=styled.div({
     justifyContent:'space-between',
     alignItems:'flex-start',
     width:'100%',
-    '&>div.first':{
+})
+const First=styled.div({
         marginRight:'20px',
         marginTop:'13px',
         width:'50%',
         textAlign:'right',
-    },
-    '&>div.second':{
+    })
+const Second=styled.div({
         marginTop:'13px',
         width:'35%',
         textAlign:'right'
-    },
-    '&>div.third':{
+    })
+const Third=styled.div({
         marginTop:'13px',
         width:'30%',
         textAlign:'right'
-    },
-    '&>div.fourth':{
+    })
+const Fourth=styled.div({
         marginTop:'13px',
         width:'50%',
         textAlign:'right'
-    },
-    '&>div.fifth':{
+    })
+const Fifth=styled.div({
         marginTop:'13px',
         width:'45%',
         textAlign:'right'
-    },
-    '&>div.sixth':{
+    })
+const Sixth=styled.div({
         marginLeft:'20px',
         marginTop:'13px',
         width:'10%',
         textAlign:'right'
-    }
-})    
+    })
+   
 export default function StudentsList(){
+    let arr=[{
+        name:'سالار رضاپور',
+        code:global.convertNumberFromEtoP('123456'),
+        grade:'دهم',
+        majors:'تجربی',
+        question:global.convertNumberFromEtoP('18'),
+        credit:global.convertNumberFromEtoP('160')
+    },
+    {
+        name:'محمد رضاپور',
+        code:global.convertNumberFromEtoP('123456'),
+        grade:'دهم',
+        majors:'تجربی',
+        question:global.convertNumberFromEtoP('18'),
+        credit:global.convertNumberFromEtoP('160')
+    },
+    {
+        name:'عرفان رضاپور',
+        code:global.convertNumberFromEtoP('123456'),
+        grade:'دهم',
+        majors:'تجربی',
+        question:global.convertNumberFromEtoP('18'),
+        credit:global.convertNumberFromEtoP('160')
+    },
+    {
+        name:'علی رضاپور',
+        code:global.convertNumberFromEtoP('123456'),
+        grade:'دهم',
+        majors:'تجربی',
+        question:global.convertNumberFromEtoP('18'),
+        credit:global.convertNumberFromEtoP('160')
+    }]
+    const StudentReturner=()=>{return arr.map((item)=>{return(<InfoDiv>
+                                                                <Row>  
+                                                                    <First>{item.name}</First>
+                                                                    <Second>{item.code}</Second> 
+                                                                    <Third>{item.grade}</Third> 
+                                                                    <Fourth>{item.majors}</Fourth>
+                                                                    <Fifth>{item.question}</Fifth>
+                                                                    <Sixth>{item.credit}</Sixth>
+                                                                </Row>
+                                                              </InfoDiv>)})}
     return(
         <Container>
             <H1>ربات رفع اشکال بارسا</H1>
-            <Row className='Top'><H2>مشخصات دانش آموزان</H2><Search placeholder='جستجو'></Search></Row>
+            <Row className='Top'><H2>لیست دانش آموزان</H2><Search placeholder='جستجو'></Search></Row>
             <Column className='Content'>
                 <TitleDiv>
                     <Row>
-                        <div className='first'>نام</div>
-                        <div className='second'>کد</div>
-                        <div className='third'>پایه</div>
-                        <div className='fourth'>رشته</div>
-                        <div className='fifth'>سوالات</div>
-                        <div className='sixth'>اعتبار</div>
+                        <First>نام</First>
+                        <Second>کد</Second>
+                        <Third>پایه</Third>
+                        <Fourth>رشته</Fourth>
+                        <Fifth>سوالات</Fifth>
+                        <Sixth>اعتبار</Sixth>
                     </Row>
                 </TitleDiv>
-                <InfoDiv>
-                    <Row>
-                        <div className='first'>سالار رضاپور</div>
-                        <div className='second'>{global.convertNumberFromEtoP(123456)}</div>
-                        <div className='third'>دهم</div>
-                        <div className='fourth'>رشته</div>
-                        <div className='fifth'>{global.convertNumberFromEtoP(18)}</div>
-                        <div className='sixth'>{global.convertNumberFromEtoP(160)}</div>
-                    </Row>
-                </InfoDiv>
-                <InfoDiv>
-                    <Row>
-                        <div className='first'>سالار رضاپور</div>
-                        <div className='second'>{global.convertNumberFromEtoP(123456)}</div>
-                        <div className='third'>دهم</div>
-                        <div className='fourth'>رشته</div>
-                        <div className='fifth'>{global.convertNumberFromEtoP(18)}</div>
-                        <div className='sixth'>{global.convertNumberFromEtoP(160)}</div>
-                    </Row>
-                </InfoDiv>
-                <InfoDiv>
-                    <Row>
-                        <div className='first'>سالار رضاپور</div>
-                        <div className='second'>{global.convertNumberFromEtoP(123456)}</div>
-                        <div className='third'>دهم</div>
-                        <div className='fourth'>رشته</div>
-                        <div className='fifth'>{global.convertNumberFromEtoP(18)}</div>
-                        <div className='sixth'>{global.convertNumberFromEtoP(160)}</div>
-                    </Row>
-                </InfoDiv>
-                <InfoDiv>
-                    <Row>
-                        <div className='first'>سالار رضاپور</div>
-                        <div className='second'>{global.convertNumberFromEtoP(123456)}</div>
-                        <div className='third'>دهم</div>
-                        <div className='fourth'>رشته</div>
-                        <div className='fifth'>{global.convertNumberFromEtoP(18)}</div>
-                        <div className='sixth'>{global.convertNumberFromEtoP(160)}</div>
-                    </Row>
-                </InfoDiv>
+                    {StudentReturner()}
             </Column>
         </Container> 
     )

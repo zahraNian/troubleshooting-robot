@@ -119,7 +119,7 @@ export default function TeacherList(){
     return(
         <Container>
             <H1>ربات رفع اشکال بارسا</H1>
-            <Row className='Top'><H2>مشخصات معلم</H2><Search placeholder='جستجو'></Search></Row>
+            <Row className='Top'><H2>لیست معلمان</H2><Search placeholder='جستجو'></Search></Row>
             <Column className='Content'>
                 <TitleDiv>
                     <Row>
