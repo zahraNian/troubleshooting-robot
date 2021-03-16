@@ -131,9 +131,9 @@ export default function TeacherInfo(){
     const[Code, setCode]=useState()
     const[Question, setQuestion]=useState()
     const[arr,setArr]=useState([])
-    const DarseJadid=()=>{
+    const DarseJadid=(Lesson)=>{
         let _arr=arr 
-        _arr.push({name:Lesson.target})
+        _arr.push({name:Lesson})
         setArr(_arr)
     }
     const LessonReturner=()=>{return arr.map((item)=>{return(<LargeInput>
@@ -151,7 +151,7 @@ export default function TeacherInfo(){
                             <LargeInput placeholder='سالار رضاپور' onChange={(a)=>setName(a.target.value)}></LargeInput>
                         </Column>
                         <Column className='Large'>
-                        <Row className='newLesson'><Title>درس</Title><button onClick={DarseJadid}>+درس جدید</button></Row>
+                        <Row className='newLesson'><Title>درس</Title><button onClick={()=>{DarseJadid(Lesson)}}>+درس جدید</button></Row>
                             <LargeInput placeholder='عربی' onChange={(b)=>setLesson(b.target.value)}></LargeInput>
                             {LessonReturner()}
                         </Column>

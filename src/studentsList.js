@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
 const Container=styled.div({
     display:'flex',
     flexDirection:'column',
@@ -128,48 +130,27 @@ const Sixth=styled.div({
     })
    
 export default function StudentsList(){
-    let arr=[{
-        name:'سالار رضاپور',
-        code:global.convertNumberFromEtoP('123456'),
-        grade:'دهم',
-        majors:'تجربی',
-        question:global.convertNumberFromEtoP('18'),
-        credit:global.convertNumberFromEtoP('160')
-    },
-    {
-        name:'محمد رضاپور',
-        code:global.convertNumberFromEtoP('123456'),
-        grade:'دهم',
-        majors:'تجربی',
-        question:global.convertNumberFromEtoP('18'),
-        credit:global.convertNumberFromEtoP('160')
-    },
-    {
-        name:'عرفان رضاپور',
-        code:global.convertNumberFromEtoP('123456'),
-        grade:'دهم',
-        majors:'تجربی',
-        question:global.convertNumberFromEtoP('18'),
-        credit:global.convertNumberFromEtoP('160')
-    },
-    {
-        name:'علی رضاپور',
-        code:global.convertNumberFromEtoP('123456'),
-        grade:'دهم',
-        majors:'تجربی',
-        question:global.convertNumberFromEtoP('18'),
-        credit:global.convertNumberFromEtoP('160')
-    }]
-    const StudentReturner=()=>{return arr.map((item)=>{return(<InfoDiv>
+    const[studentList, setStudentList]=useState([])
+    const [isEffected, setIsEffected]=useState(false)
+    useEffect(()=>{if(!isEffected){
+        setIsEffected(true)
+        axios.get('https://qanda-bot.liara.run/students')
+                .then((response) => {
+                   setStudentList(response.data)
+                })
+                .catch((error) => {
+                    console.log(error);   
+    })}});
+    const StudentReturner=()=>{if(studentList) {return(studentList.map((item)=>{return(<InfoDiv>
                                                                 <Row>  
                                                                     <First>{item.name}</First>
                                                                     <Second>{item.code}</Second> 
-                                                                    <Third>{item.grade}</Third> 
-                                                                    <Fourth>{item.majors}</Fourth>
-                                                                    <Fifth>{item.question}</Fifth>
-                                                                    <Sixth>{item.credit}</Sixth>
+                                                                    <Third>{item.subject}</Third> 
+                                                                   {/*  <Fourth>{item.majors}</Fourth> */}
+                                                                    <Fifth>{item.qs}</Fifth>
+                                                                    {/* <Sixth>{item.credit}</Sixth> */}
                                                                 </Row>
-                                                              </InfoDiv>)})}
+                                                              </InfoDiv>)}))}}
     return(
         <Container>
             <H1>ربات رفع اشکال بارسا</H1>

@@ -48,8 +48,8 @@ const Column=styled.div({
 
 export default function Page(){
   return(
-    <Router>
-      <Switch>
+    <div>
+      
         <Route path='/home'>
           <Row> 
             <Column>
@@ -75,9 +75,8 @@ export default function Page(){
           </Column>
         </Row> 
       </Route>
-        <Route path='/studentsList' component={StudentsList}></Route>
-        <Route path='/teacherList' component={TeachersList}></Route>
-      </Switch> 
-    </Router>   
+        
+       
+    </div>   
   )
 }

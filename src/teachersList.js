@@ -135,7 +135,7 @@ export default function TeacherList(){
         question:global.convertNumberFromEtoP('18'),
     },
     ]
-    const StudentReturner=()=>{return arr.map((item)=>{return(<InfoDiv>
+    const TeacherReturner=()=>{return arr.map((item)=>{return(<InfoDiv>
                                                                 <Row>  
                                                                     <First>{item.name}</First>
                                                                     <Second>{item.code}</Second> 
@@ -156,7 +156,7 @@ export default function TeacherList(){
                         <Fourth>سوالات</Fourth>
                     </Row>
                 </TitleDiv>
-                {StudentReturner()}
+                {TeacherReturner()}
             </Column>
         </Container> 
     )
