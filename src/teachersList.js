@@ -1,4 +1,7 @@
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
 const Container=styled.div({
     display:'flex',
     flexDirection:'column',
@@ -84,7 +87,10 @@ const InfoDiv=styled.div({
     width:'calc(100% - 20px)',
     borderRadius:'30px',
     fontSize:'12px',
-    paddingBottom:'5px'
+    paddingBottom:'5px',
+    '&>a':{
+        textDecoration:'none'
+    }
 })
 const Row=styled.div({
     display:'flex',
@@ -116,32 +122,30 @@ const Fourth=styled.div({
         textAlign:'right'
 })
 export default function TeacherList(){
-    let arr=[{
-        name:'سالار رضاپور',
-        code:global.convertNumberFromEtoP('123456'),
-        lesson:'ریاضی-دیفرانسیل-گسسته-آمار',
-        question:global.convertNumberFromEtoP('18'),
-    },
-    {
-        name:'سالار رضاپور',
-        code:global.convertNumberFromEtoP('123456'),
-        lesson:'ریاضی-دیفرانسیل-گسسته-آمار',
-        question:global.convertNumberFromEtoP('18'),
-    },
-    {
-        name:'سالار رضاپور',
-        code:global.convertNumberFromEtoP('123456'),
-        lesson:'ریاضی-دیفرانسیل-گسسته-آمار',
-        question:global.convertNumberFromEtoP('18'),
-    },
-    ]
-    const TeacherReturner=()=>{return arr.map((item)=>{return(<InfoDiv>
+    const [isEffected, setIsEffected]=useState(false)
+    const [teacherList, setTeacherList]=useState([])
+
+    useEffect(()=>{if(!isEffected){
+                        setIsEffected(true)
+                        axios.get('https://qanda-bot.liara.run/teachers')
+                        .then((response)=>{
+                            setTeacherList(response.data)
+                        })
+                        .catch((error)=>{
+                            console.log(error)
+                        })
+
+    }})
+
+    const TeacherReturner=()=>{return teacherList.map((item)=>{return(<InfoDiv >
+                                                                <Link to={`/teacherInfo/${item._id}`}>
                                                                 <Row>  
                                                                     <First>{item.name}</First>
                                                                     <Second>{item.code}</Second> 
-                                                                    <Third>{item.lesson}</Third> 
-                                                                    <Fourth>{item.question}</Fourth>
+                                                                    <Third>{item.subject}</Third> 
+                                                                    <Fourth>{item.qs}</Fourth>
                                                                 </Row>
+                                                                </Link>
                                                             </InfoDiv>)})}
     return(
         <Container>

@@ -1,5 +1,7 @@
 import styled from 'styled-components'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
+import axios from 'axios'
+import {useParams} from 'react-router-dom'
 const Container=styled.div({
     display:'flex',
     flexDirection:'column',
@@ -69,7 +71,7 @@ const Column=styled.div({
         height:'50px',
         paddingRight:'20px',
         boxSizing:'border-box',
-        color:'var(--gray)'
+        color:'black'
   })
   const SmallInput=styled.input({
         borderRadius:'20px',
@@ -83,7 +85,7 @@ const Column=styled.div({
         height:'50px',
         paddingRight:'20px',
         boxSizing:'border-box',
-        color:'var(--gray)'
+        color:'black'
   })
   const Title=styled.h2({
       width:'100%',
@@ -122,6 +124,7 @@ const Column=styled.div({
     fontSize:'20px',
 })
 
+
 export default function StudentInfo(){
     const[Name, setName]=useState()
     const[Grade, setGrade]=useState()
@@ -129,6 +132,17 @@ export default function StudentInfo(){
     const[Code, setCode]=useState()
     const[Credit, setCredit]=useState()
     const[Question, setQuestion]=useState()
+    const[isEffected, setIsEffected]=useState(false)
+    const {studentId}=useParams()
+    const[studentInfo, setStudentInfo]=useState([])
+
+    useEffect(()=>{if(!isEffected)
+        {setIsEffected(true)
+        axios.get(`https://qanda-bot.liara.run/student?_id=${studentId}`)
+        .then((response)=>{
+            setStudentInfo(response.data)})    
+    }})
+    
     return(
         <Container>
             <H1>ربات رفع اشکال بارسا</H1>
@@ -138,12 +152,12 @@ export default function StudentInfo(){
                     <Column className='RowBigColumn'>
                         <Column className='Large'>
                             <Title>نام دانش آموز</Title>
-                            <LargeInput placeholder='سالار رضاپور' onChange={(a)=>setName(a.target.value)}></LargeInput>
+                            <LargeInput placeholder={studentInfo.name} onChange={(a)=>setName(a.target.value)}></LargeInput>
                         </Column>
                         <Row>
                             <Column className='Small'>
                                 <Title>پایه</Title>
-                                <SmallInput placeholder='دهم' onChange={(b)=>setGrade(b.target.value)}></SmallInput>
+                                <SmallInput placeholder={studentInfo.subject} onChange={(b)=>setGrade(b.target.value)}></SmallInput>
                             </Column>
                             <Column className='Small'>
                                 <Title>رشته</Title>
@@ -154,7 +168,7 @@ export default function StudentInfo(){
                     <Column className='RowBigColumn'>
                         <Column className='Large'>
                             <Title>کد دانش آموز</Title>
-                            <LargeInput placeholder={global.convertNumberFromEtoP(123456)} onChange={(d)=>setCode(d.target.value)}></LargeInput>
+                            <LargeInput placeholder={global.convertNumberFromEtoP(studentInfo.code)} onChange={(d)=>setCode(d.target.value)}></LargeInput>
                         </Column>
                         <Row>
                             <Column className='Small'>
@@ -163,11 +177,11 @@ export default function StudentInfo(){
                             </Column>
                             <Column className='Small'>
                                 <Title>سوالات</Title>
-                                <SmallInput placeholder={global.convertNumberFromEtoP(18)}onChange={(f)=>setQuestion(f.target.value)}></SmallInput>
+                                <SmallInput placeholder={global.convertNumberFromEtoP(studentInfo.qs)}onChange={(f)=>setQuestion(f.target.value)}></SmallInput>
                             </Column>
                         </Row>
                         <Row className='B'>
-                            <Button>ذخیره</Button>
+                            <Button >ذخیره</Button>
                         </Row>
                     </Column>
                 </Row>

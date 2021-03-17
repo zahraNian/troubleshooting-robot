@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 const Container=styled.div({
     display:'flex',
     flexDirection:'column',
@@ -87,7 +88,10 @@ const InfoDiv=styled.div({
     borderRadius:'30px',
     fontSize:'12px',
     paddingBottom:'5px',
-    boxSizing:'border-box'
+    boxSizing:'border-box',
+    '&>a':{
+        textDecoration:'none'
+    }
 })
 const Row=styled.div({
     display:'flex',
@@ -128,6 +132,7 @@ const Sixth=styled.div({
         width:'10%',
         textAlign:'right'
     })
+    
    
 export default function StudentsList(){
     const[studentList, setStudentList]=useState([])
@@ -141,7 +146,8 @@ export default function StudentsList(){
                 .catch((error) => {
                     console.log(error);   
     })}});
-    const StudentReturner=()=>{if(studentList) {return(studentList.map((item)=>{return(<InfoDiv>
+const StudentReturner=()=>{return studentList.map((item)=>{return(<InfoDiv>
+                                                                <Link to={`/studentInfo/${item._id}`}>
                                                                 <Row>  
                                                                     <First>{item.name}</First>
                                                                     <Second>{item.code}</Second> 
@@ -150,7 +156,16 @@ export default function StudentsList(){
                                                                     <Fifth>{item.qs}</Fifth>
                                                                     {/* <Sixth>{item.credit}</Sixth> */}
                                                                 </Row>
-                                                              </InfoDiv>)}))}}
+                                                                </Link>
+                                                              </InfoDiv>)})}
+
+
+
+
+
+
+
+
     return(
         <Container>
             <H1>ربات رفع اشکال بارسا</H1>

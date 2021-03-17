@@ -17,6 +17,8 @@ export default function App(){
          <Route component={Page} path='/home'></Route>
        <Route path='/studentsList' component={StudentsList}></Route>
         <Route path='/teacherList' component={TeachersList}></Route>
+        <Route path='/teacherInfo/:teacherId' component={TeacherInfo}></Route>
+        <Route path='/studentInfo/:studentId' component={StudentInfo}></Route>
       </Switch>
     </Router>
   )

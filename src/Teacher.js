@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import {useState} from 'react'
+import axios from 'axios'
 
 const Total=styled.div({
     display:'flex',
@@ -77,13 +77,13 @@ const Column=styled.div({
             height:'50px',
             paddingRight:'20px',
             boxSizing:'border-box',
-            color:'var(--gray)',
+            color:'black',
         }
     },
     '&>div.button':{
         justifyContent:'flex-end',
         margin:'0px 20px',
-        '&>a':{
+        '&>button':{
             borderRadius:'var(--borderRadius-div)',
             backgroundColor:'var(--lightBlue)',
             color:'var(--blue)',
@@ -91,13 +91,14 @@ const Column=styled.div({
             fontSize:'15px',
             height:'40px',
             textAlign:'center',
-            paddingTop:'10px',
+            paddingTop:'5px',
             boxSizing:'border-box',
             margin:'20px 0px',
             fontWeight:'bold',
             textDecoration: 'none',
             width:'130px',
-            textAlign:'center'
+            textAlign:'center',
+            border:'none'
         }
     }    
 })
@@ -108,8 +109,38 @@ export default function Teacher(props){
     const [arr,setArr]=useState([]) 
     const DarseJadid=(Lesson)=>{
         let _arr=arr 
-        _arr.push(Lesson.target.value)
+        _arr.push(Lesson)
         setArr(_arr)
+        alert(_arr)
+        const LessonReturner=()=>{return arr.map((item)=>{return (<Column><input>{item}</input></Column>)})}
+    }
+    
+    function AddTeachers(){
+        {if(Name && Code && Lesson){var data = JSON.stringify({
+            name:Name,
+            code:Code,
+            subject:Lesson
+
+        })
+
+        var config = {
+            method: 'post',
+            url: 'https://qanda-bot.liara.run/teacher',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            data: data
+        }
+
+        axios(config)
+            .then(function (response) {
+                alert('اطلاعات شما ثبت شد.')
+            })
+            .catch(function (error) {
+            console.log(error)
+            })
+    }
+        else{alert('لطفا همه ی مقادیر را پر کنید.')}  }
     }
     return(
         <Total>
@@ -123,11 +154,11 @@ export default function Teacher(props){
                     <input placeholder={global.convertNumberFromEtoP(123456)}  onChange={(b)=>setCode(global.convertNumberFromPtoE(b.target.value))}/>
                 </Column>
                 <Column className='title'>
-                    <Row className='newLesson'><h2>درس</h2><button onClick={DarseJadid}>+درس جدید</button></Row>
+                    <Row className='newLesson'><h2>درس</h2><button onClick={()=>{DarseJadid()}}>+درس جدید</button></Row>
                     <input placeholder='تجربی' onChange={(c)=>setLesson(c.target.value)}></input>
                 </Column>
                 <Row className='button'>
-                    <Link to={props.link}>ثبت</Link>
+                    <button onClick={()=>{AddTeachers()}}>ثبت</button>
                 </Row>
             </Column>
         </Total>    

@@ -1,5 +1,7 @@
 import styled from 'styled-components'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+import axios from 'axios'
+import {useParams} from 'react-router-dom'
 const Container=styled.div({
     display:'flex',
     flexDirection:'column',
@@ -85,7 +87,7 @@ const Column=styled.div({
         height:'50px',
         paddingRight:'20px',
         boxSizing:'border-box',
-        color:'var(--gray)',
+        color:'black',
         marginTop:'10px'
   })
   const Title=styled.h2({
@@ -131,14 +133,29 @@ export default function TeacherInfo(){
     const[Code, setCode]=useState()
     const[Question, setQuestion]=useState()
     const[arr,setArr]=useState([])
+    const [isEffected, setIsEffected]=useState(false)
+    const [teacherList, setTeacherList]=useState([])
+    const [teacherInfo, setTeacherInfo]=useState([])
+    const {teacherId}=useParams()
     const DarseJadid=(Lesson)=>{
         let _arr=arr 
         _arr.push({name:Lesson})
         setArr(_arr)
     }
-    const LessonReturner=()=>{return arr.map((item)=>{return(<LargeInput>
-        {item.name}
-      </LargeInput>)})}
+    const LessonReturner=()=>{return arr.map((item)=>{return(<LargeInput>{item.name}</LargeInput>)})}
+      
+      useEffect(()=>{if(!isEffected){
+        setIsEffected(true)
+        axios.get(`https://qanda-bot.liara.run/teacher?_id=${teacherId}`)
+        .then((response)=>{
+            setTeacherInfo(response.data)
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+
+}})
+
     return(
         <Container>
             <H1>ربات رفع اشکال بارسا</H1>
@@ -148,25 +165,25 @@ export default function TeacherInfo(){
                     <Column className='RowBigColumn'>
                         <Column className='Large'>
                             <Title>نام معلم</Title>
-                            <LargeInput placeholder='سالار رضاپور' onChange={(a)=>setName(a.target.value)}></LargeInput>
+                            <LargeInput placeholder={teacherInfo.name} onChange={(a)=>setName(a.target.value)}></LargeInput>
                         </Column>
                         <Column className='Large'>
                         <Row className='newLesson'><Title>درس</Title><button onClick={()=>{DarseJadid(Lesson)}}>+درس جدید</button></Row>
-                            <LargeInput placeholder='عربی' onChange={(b)=>setLesson(b.target.value)}></LargeInput>
+                            <LargeInput placeholder={teacherInfo.subject} onChange={(b)=>setLesson(b.target.value)}></LargeInput>
                             {LessonReturner()}
                         </Column>
                     </Column>
                     <Column className='RowBigColumn'>
                         <Column className='Large'>
                             <Title>کد معلم</Title>
-                            <LargeInput placeholder={global.convertNumberFromEtoP(123456)} onChange={(c)=>setCode(c.target.value)}></LargeInput>
+                            <LargeInput placeholder={global.convertNumberFromEtoP(teacherInfo.code)} onChange={(c)=>setCode(c.target.value)}></LargeInput>
                         </Column>
                         <Column className='Large'>
                             <Title>سوالات</Title>
                             <LargeInput placeholder={global.convertNumberFromEtoP(18)} onChange={(d)=>setQuestion(d.target.value)}></LargeInput>
                         </Column>
                         <Row className='B'>
-                            <Button>ذخیره</Button>
+                            <Button >ذخیره</Button>
                         </Row>
                     </Column>
                 </Row>
