@@ -163,15 +163,15 @@ export default function TeacherInfo(){
     const [teacherInfo, setTeacherInfo]=useState([])
     const {teacherId}=useParams()
     
-    function AddTeachers(){
-        {if(Name && Code && Lesson){var data = JSON.stringify({
+    function EditTeachers(){
+        if(Name && Code && Lesson){var data = JSON.stringify({
             name:Name,
             code:Code,
             subject:Lesson
         })
         var config = {
             method: 'post',
-            url: `https://qanda-bot.liara.run/edit/:${teacherId}`,
+            url: `https://qanda-bot.liara.run/edit/${teacherId}`,
             headers: {
             'Content-Type': 'application/json'
             },
@@ -180,13 +180,13 @@ export default function TeacherInfo(){
         axios(config)
             .then(function (response) {
                 alert('اطلاعات شماویرایش شد.')
-                window.location.reload()
+                response.error?alert(response. error):window.location.reload()
             })
             .catch(function (error) {
             console.log(error)
             })
     }
-        else{alert('لطفا همه ی مقادیر را پر کنید.')}}}
+        else{alert('لطفا همه ی مقادیر را پر کنید.')}}
       
       useEffect(()=>{if(!isEffected){
         setIsEffected(true)
@@ -237,7 +237,7 @@ export default function TeacherInfo(){
                             <LargeInput placeholder={global.convertNumberFromEtoP(18)} onChange={(d)=>setQuestion(d.target.value)}></LargeInput>
                         </Column>
                         <Row className='B'>
-                            <Button onClick={()=>{AddTeachers()}} >ذخیره</Button>
+                            <Button onClick={()=>{EditTeachers()}} >ذخیره</Button>
                         </Row>
                     </Column>
                 </Row>

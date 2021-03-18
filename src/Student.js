@@ -120,11 +120,11 @@ export default function Srudent(props){
     const [Credit,setCredit]=useState([]) 
     const [subject, setSubject]=useState({paye:'Grade',reshte:'Majors',})
     function AddStudents(){
-        {if(Name && Code && Grade){var data = JSON.stringify({
+        if(Name && Code && Grade && Credit){var data = JSON.stringify({
             name:Name,
             code:Code,
-            subject:Grade+' '+Majors
-
+            subject:Grade+' '+Majors,
+            qs:Credit
         })
 
         var config = {
@@ -145,7 +145,7 @@ export default function Srudent(props){
             console.log(error)
             })
     }
-        else{alert('لطفا همه ی مقادیر را پر کنید.')}  }
+        else{alert('لطفا همه ی مقادیر را پر کنید.')}  
     }
     return(
         <Total>

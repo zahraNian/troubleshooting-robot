@@ -126,6 +126,7 @@ const Fourth=styled.div({
 export default function TeacherList(){
     const [isEffected, setIsEffected]=useState(false)
     const [teacherList, setTeacherList]=useState([])
+    const [search, setSearch]=useState()
 
     useEffect(()=>{if(!isEffected){
                         setIsEffected(true)
@@ -149,10 +150,11 @@ export default function TeacherList(){
                                                                 </Row>
                                                                 </Link>
                                                             </InfoDiv>)})}
+                                                     
     return(
         <Container>
             <H1>ربات رفع اشکال بارسا</H1>
-            <Row className='Top'><H2>لیست معلمان</H2><Search placeholder='جستجو'></Search></Row>
+            <Row className='Top'><H2>لیست معلمان</H2><Search placeholder='جستجو' onChange={(e)=>{setSearch(e.target.value)}} ></Search></Row>
             <Column className='Content'>
                 <TitleDiv>
                     <Row>

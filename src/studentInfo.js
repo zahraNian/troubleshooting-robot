@@ -134,6 +134,7 @@ const Column=styled.div({
     width:'130px',
     textAlign:'center',
     border:'none',
+    cursor:'pointer'
   })
   const H1=styled.h1({
       textAlign:'rigth',
@@ -161,6 +162,31 @@ export default function StudentInfo(){
     const[isEffected, setIsEffected]=useState(false)
     const {studentId}=useParams()
     const[studentInfo, setStudentInfo]=useState([])
+
+    function EditStudent(){
+        if(Name && Code && Grade && Majors){var data = JSON.stringify({
+            name:Name,
+            code:Code,
+            subject:Grade+' '+Majors,
+        })
+        var config = {
+            method: 'post',
+            url: `https://qanda-bot.liara.run/edit/${studentId}`,
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            data: data
+        }
+        axios(config)
+            .then(function (response) {
+                alert('اطلاعات شماویرایش شد.')
+                response.error?alert(response. error):window.location.reload()
+            })
+            .catch(function (error) {
+            console.log(error)
+            })
+    }
+        else{alert('لطفا همه ی مقادیر را پر کنید.')}}
 
     useEffect(()=>{if(!isEffected)
         {setIsEffected(true)
@@ -228,7 +254,7 @@ export default function StudentInfo(){
                             </Column>
                         </Row>
                         <Row className='B'>
-                            <Button >ذخیره</Button>
+                            <Button onClick={()=>{EditStudent()}}>ذخیره</Button>
                         </Row>
                     </Column>
                 </Row>
