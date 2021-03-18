@@ -70,7 +70,7 @@ const Column=styled.div({
             width:'100%',
             minWidth:'220px',
             maxWidth:'440px',
-            fontFamily:'var(--text)',
+            fontFamily:'text',
             backgroundColor:'var(--lightGray)',
             border:'none',
             fontWeight:'bold',
@@ -78,6 +78,27 @@ const Column=styled.div({
             paddingRight:'20px',
             boxSizing:'border-box',
             color:'black',
+        },
+        '&>select':{
+            borderRadius:'20px',
+            fontSize:'17px',
+            width:'100%',
+            minWidth:'220px',
+            maxWidth:'440px',
+            fontFamily:'text',
+            backgroundColor:'var(--lightGray)',
+            border:'none',
+            fontWeight:'bold',
+            height:'50px',
+            paddingRight:'15px',
+            paddingLeft:'20px',
+            boxSizing:'border-box',
+            color:'black', 
+
+            '&>option':{
+                fontFamily:'text',
+                fontSize:'15px'
+            }
         }
     },
     '&>div.button':{
@@ -98,7 +119,8 @@ const Column=styled.div({
             textDecoration: 'none',
             width:'130px',
             textAlign:'center',
-            border:'none'
+            border:'none',
+            cursor:'pointer'
         }
     }    
 })
@@ -107,13 +129,6 @@ export default function Teacher(props){
     const [Code,setCode]=useState()
     const [Lesson,setLesson]=useState()
     const [arr,setArr]=useState([]) 
-    const DarseJadid=(Lesson)=>{
-        let _arr=arr 
-        _arr.push(Lesson)
-        setArr(_arr)
-        alert(_arr)
-        const LessonReturner=()=>{return arr.map((item)=>{return (<Column><input>{item}</input></Column>)})}
-    }
     
     function AddTeachers(){
         {if(Name && Code && Lesson){var data = JSON.stringify({
@@ -135,6 +150,7 @@ export default function Teacher(props){
         axios(config)
             .then(function (response) {
                 alert('اطلاعات شما ثبت شد.')
+                window.location.reload()
             })
             .catch(function (error) {
             console.log(error)
@@ -154,8 +170,19 @@ export default function Teacher(props){
                     <input placeholder={global.convertNumberFromEtoP(123456)}  onChange={(b)=>setCode(global.convertNumberFromPtoE(b.target.value))}/>
                 </Column>
                 <Column className='title'>
-                    <Row className='newLesson'><h2>درس</h2><button onClick={()=>{DarseJadid()}}>+درس جدید</button></Row>
-                    <input placeholder='تجربی' onChange={(c)=>setLesson(c.target.value)}></input>
+                    <h2>درس</h2>
+                    <select onChange={(e)=>{setLesson(e.target.value)}}>
+                        <option value='شیمی'>شیمی</option>
+                        <option value='فیزیک'>فیزیک</option>
+                        <option value='زیست'>زیست</option>
+                        <option value='هندسه پایه و تحلیلی و گسسته'>هندسه پایه و تحلیلی و گسسته</option>
+                        <option value='حسابان 1و2(رشته ریاضی)'>حسابان 1و2(رشته ریاضی)</option>
+                        <option value='ریاضیات تجربی(پایه یازدهم و دوازدهم)'>ریاضیات تجربی(پایه یازدهم و دوازدهم)</option>
+                        <option value='ریاضیات پایه دهم'>ریاضیات پایه دهم</option>
+                        <option value='ریاضی متوسطه اول'>ریاضی متوسطه اول</option>
+                        <option value='ادبیات و عربی و دروس اختصاصی انسانی'>ادبیات و عربی و دروس اختصاصی انسانی</option>
+
+                    </select>
                 </Column>
                 <Row className='button'>
                     <button onClick={()=>{AddTeachers()}}>ثبت</button>

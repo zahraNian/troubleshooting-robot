@@ -126,23 +126,67 @@ const Column=styled.div({
     fontFamily:'title',
     fontSize:'20px',
 })
+const Select=styled.select({
+    borderRadius:'20px',
+    fontSize:'17px',
+    width:'calc(100% - 20px)',
+    minWidth:'260px',
+    fontFamily:'text',
+    backgroundColor:'var(--lightGray)',
+    border:'none',
+    fontWeight:'bold',
+    height:'50px',
+    paddingRight:'20px',
+    boxSizing:'border-box',
+    color:'black',
+    marginTop:'10px',
+    '&>option':{
+        fontFamily:'text',
+        fontSize:'15px',
+        color:'black'
+    },
+    '&>option.first':{
+        fontWeight:'bold',
+        color:'black',
+        fontSize:'17px',
+        backgroundColor:'#c5c5c5'
+    }
+})
 
 export default function TeacherInfo(){
     const[Name, setName]=useState()
     const[Lesson, setLesson]=useState()
     const[Code, setCode]=useState()
     const[Question, setQuestion]=useState()
-    const[arr,setArr]=useState([])
     const [isEffected, setIsEffected]=useState(false)
     const [teacherList, setTeacherList]=useState([])
     const [teacherInfo, setTeacherInfo]=useState([])
     const {teacherId}=useParams()
-    const DarseJadid=(Lesson)=>{
-        let _arr=arr 
-        _arr.push({name:Lesson})
-        setArr(_arr)
+    
+    function AddTeachers(){
+        {if(Name && Code && Lesson){var data = JSON.stringify({
+            name:Name,
+            code:Code,
+            subject:Lesson
+        })
+        var config = {
+            method: 'post',
+            url: `https://qanda-bot.liara.run/edit/:${teacherId}`,
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            data: data
+        }
+        axios(config)
+            .then(function (response) {
+                alert('اطلاعات شماویرایش شد.')
+                window.location.reload()
+            })
+            .catch(function (error) {
+            console.log(error)
+            })
     }
-    const LessonReturner=()=>{return arr.map((item)=>{return(<LargeInput>{item.name}</LargeInput>)})}
+        else{alert('لطفا همه ی مقادیر را پر کنید.')}}}
       
       useEffect(()=>{if(!isEffected){
         setIsEffected(true)
@@ -168,9 +212,19 @@ export default function TeacherInfo(){
                             <LargeInput placeholder={teacherInfo.name} onChange={(a)=>setName(a.target.value)}></LargeInput>
                         </Column>
                         <Column className='Large'>
-                        <Row className='newLesson'><Title>درس</Title><button onClick={()=>{DarseJadid(Lesson)}}>+درس جدید</button></Row>
-                            <LargeInput placeholder={teacherInfo.subject} onChange={(b)=>setLesson(b.target.value)}></LargeInput>
-                            {LessonReturner()}
+                        <Title>درس</Title>
+                        <Select onChange={(e)=>{setLesson(e.target.value)}}>
+                            <option className='first' value={teacherInfo.subject}>{teacherInfo.subject}</option>
+                            <option value='شیمی'>شیمی</option>
+                            <option value='فیزیک'>فیزیک</option>
+                            <option value='زیست'>زیست</option>
+                            <option value='هندسه پایه و تحلیلی و گسسته'>هندسه پایه و تحلیلی و گسسته</option>
+                            <option value='حسابان 1و2(رشته ریاضی)'>حسابان 1و2(رشته ریاضی)</option>
+                            <option value='ریاضیات تجربی(پایه یازدهم و دوازدهم)'>ریاضیات تجربی(پایه یازدهم و دوازدهم)</option>
+                            <option value='ریاضیات پایه دهم'>ریاضیات پایه دهم</option>
+                            <option value='ریاضی متوسطه اول'>ریاضی متوسطه اول</option>
+                            <option value='ادبیات و عربی و دروس اختصاصی انسانی'>ادبیات و عربی و دروس اختصاصی انسانی</option>
+                        </Select>
                         </Column>
                     </Column>
                     <Column className='RowBigColumn'>
@@ -183,7 +237,7 @@ export default function TeacherInfo(){
                             <LargeInput placeholder={global.convertNumberFromEtoP(18)} onChange={(d)=>setQuestion(d.target.value)}></LargeInput>
                         </Column>
                         <Row className='B'>
-                            <Button >ذخیره</Button>
+                            <Button onClick={()=>{AddTeachers()}} >ذخیره</Button>
                         </Row>
                     </Column>
                 </Row>

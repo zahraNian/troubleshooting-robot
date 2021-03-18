@@ -101,22 +101,24 @@ const Row=styled.div({
 })    
 const First=styled.div({
         marginRight:'20px',
+        marginLeft:'10px',
         marginTop:'13px',
-        width:'65%',
+        width:'60%',
         textAlign:'right',
 })
 const Second=styled.div({
         marginTop:'13px',
-        width:'60%',
+        width:'40%',
         textAlign:'right'
 })
 const Third=styled.div({
         marginTop:'13px',
-        width:'83%',
+        width:'100%',
         textAlign:'right'
 })
 const Fourth=styled.div({
         marginLeft:'20px',
+        marginRight:'10px',
         marginTop:'13px',
         width:'12%',
         textAlign:'right'

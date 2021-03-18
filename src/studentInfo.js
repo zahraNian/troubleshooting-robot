@@ -74,6 +74,20 @@ const Column=styled.div({
         color:'black'
   })
   const SmallInput=styled.input({
+    borderRadius:'20px',
+    fontSize:'20px',
+    width:'calc(100% - 20px)',
+    minWidth:'130px',
+    fontFamily:'text',
+    backgroundColor:'var(--lightGray)',
+    border:'none',
+    fontWeight:'bold',
+    height:'50px',
+    paddingRight:'20px',
+    boxSizing:'border-box',
+    color:'black'
+  })  
+  const SmallSelect=styled.select({
         borderRadius:'20px',
         fontSize:'20px',
         width:'calc(100% - 20px)',
@@ -85,7 +99,19 @@ const Column=styled.div({
         height:'50px',
         paddingRight:'20px',
         boxSizing:'border-box',
-        color:'black'
+        color:'black',
+        '&>option':{
+            fontFamily:'text',
+            fontSize:'15px',
+            color:'black'
+        },
+        '&>option.first':{
+            fontWeight:'bold',
+            color:'black',
+            fontSize:'17px',
+            backgroundColor:'#c5c5c5'
+    
+        }
   })
   const Title=styled.h2({
       width:'100%',
@@ -157,11 +183,32 @@ export default function StudentInfo(){
                         <Row>
                             <Column className='Small'>
                                 <Title>پایه</Title>
-                                <SmallInput placeholder={studentInfo.subject} onChange={(b)=>setGrade(b.target.value)}></SmallInput>
+                                <SmallSelect onChange={(e)=>{setGrade(e.target.value)}}>
+                                    <option className='first' value={studentInfo.subject ? studentInfo.subject.split(' ')[0] : null}>{studentInfo.subject ? studentInfo.subject.split(' ')[0] : null}</option>
+                                    <option value='دوازدهم'>دوازدهم</option>
+                                    <option value='یازدهم'>یازدهم</option>
+                                    <option value='دهم'>دهم</option>
+                                    <option value='نهم'>نهم</option>
+                                    <option value='هشتم'>هشتم</option>
+                                    <option value='هفتم<'>هفتم</option>
+                                    <option value='ششم'>ششم</option>
+                                    <option value='پنجم'>پنجم</option>
+                                    <option value='چهارم'>چهارم</option>
+                                    <option value='سوم'>سوم</option>
+                                    <option value='دوم'>دوم</option>
+                                    <option value='اول'>اول</option>
+                                </SmallSelect>
                             </Column>
                             <Column className='Small'>
                                 <Title>رشته</Title>
-                                <SmallInput placeholder='تجربی' onChange={(c)=>setMajors(c.target.value)}></SmallInput>
+                                <SmallSelect onChange={(c)=>setMajors(c.target.value)}>
+                                <option className='first' value={studentInfo.subject ? studentInfo.subject.split(' ')[1] : null}>{studentInfo.subject ? studentInfo.subject.split(' ')[1] : null}</option>
+                                    <option value='ریاضی'>ریاضی</option>
+                                    <option value='تجربی'>تجربی</option>
+                                    <option value='انسانی'>انسانی</option>
+                                    <option value='هنر'>هنر</option>
+                                    <option value='پایه'>پایه</option>
+                                </SmallSelect>    
                             </Column>
                         </Row>
                     </Column>

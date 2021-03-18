@@ -34,7 +34,7 @@ const Row=styled.div({
                 width:'calc(100% - 10px)',
                 textAlign:'right',
             },
-            '&>input':{
+            '&>select':{
                 borderRadius:'20px',
                 fontSize:'20px',
                 width:'calc(100% - 10px)',
@@ -45,9 +45,10 @@ const Row=styled.div({
                 border:'none',
                 fontWeight:'bold',
                 height:'50px',
-                paddingRight:'20px',
+                paddingRight:'15px',
                 boxSizing:'border-box',
-                color:'black'
+                color:'black',
+                fontSize:'17px'
             }
         }
     })
@@ -77,7 +78,7 @@ const Column=styled.div({
             width:'calc(100% - 30px)',
             minWidth:'220px',
             maxWidth:'400px',
-            fontFamily:'var(--text)',
+            fontFamily:'text',
             backgroundColor:'var(--lightGray)',
             border:'none',
             fontWeight:'bold',
@@ -117,11 +118,12 @@ export default function Srudent(props){
     const [Grade,setGrade]=useState([])
     const [Majors,setMajors]=useState([]) 
     const [Credit,setCredit]=useState([]) 
+    const [subject, setSubject]=useState({paye:'Grade',reshte:'Majors',})
     function AddStudents(){
         {if(Name && Code && Grade){var data = JSON.stringify({
             name:Name,
             code:Code,
-            subject:Grade
+            subject:Grade+' '+Majors
 
         })
 
@@ -137,6 +139,7 @@ export default function Srudent(props){
         axios(config)
             .then(function (response) {
                 alert('اطلاعات شما ثبت شد.')
+                window.location.reload()
             })
             .catch(function (error) {
             console.log(error)
@@ -158,11 +161,30 @@ export default function Srudent(props){
                 <Row>
                     <Column>
                         <h2>پایه</h2>
-                        <input placeholder='دهم' onChange={(b)=>setGrade(b.target.value)}></input>
+                        <select onChange={(e)=>{setGrade(e.target.value)}}>
+                            <option value='دوازدهم'>دوازدهم</option>
+                            <option value='یازدهم'>یازدهم</option>
+                            <option value='دهم'>دهم</option>
+                            <option value='نهم'>نهم</option>
+                            <option value='هشتم'>هشتم</option>
+                            <option value='هفتم<'>هفتم</option>
+                            <option value='ششم'>ششم</option>
+                            <option value='پنجم'>پنجم</option>
+                            <option value='چهارم'>چهارم</option>
+                            <option value='سوم'>سوم</option>
+                            <option value='دوم'>دوم</option>
+                            <option value='اول'>اول</option>
+                        </select>
                     </Column>
                     <Column>
                         <h2>رشته</h2>
-                        <input placeholder='تجربی' onChange={(b)=>setMajors(b.target.value)}></input>
+                        <select onChange={(e)=>{setMajors(e.target.value)}}>
+                            <option value='ریاضی'>ریاضی</option>
+                            <option value='تجربی'>تجربی</option>
+                            <option value='انسانی'>انسانی</option>
+                            <option value='هنر'>هنر</option>
+                            <option value='پایه'>پایه</option>
+                        </select>
                     </Column>
                 </Row>
                 <Column>

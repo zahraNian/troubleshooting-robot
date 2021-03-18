@@ -152,9 +152,8 @@ const StudentReturner=()=>{return studentList.map((item)=>{return(<InfoDiv>
                                                                     <First>{item.name}</First>
                                                                     <Second>{item.code}</Second> 
                                                                     <Third>{item.subject}</Third> 
-                                                                   {/*  <Fourth>{item.majors}</Fourth> */}
-                                                                    <Fifth>{item.qs}</Fifth>
-                                                                    {/* <Sixth>{item.credit}</Sixth> */}
+                                                                    <Fourth>{item.qs}</Fourth>
+                                                                    <Fifth>{item.credit}</Fifth>
                                                                 </Row>
                                                                 </Link>
                                                               </InfoDiv>)})}
@@ -175,10 +174,9 @@ const StudentReturner=()=>{return studentList.map((item)=>{return(<InfoDiv>
                     <Row>
                         <First>نام</First>
                         <Second>کد</Second>
-                        <Third>پایه</Third>
-                        <Fourth>رشته</Fourth>
-                        <Fifth>سوالات</Fifth>
-                        <Sixth>اعتبار</Sixth>
+                        <Third>پایه / رشته</Third>
+                        <Fourth>سوالات</Fourth>
+                        <Fifth>اعتبار</Fifth>
                     </Row>
                 </TitleDiv>
                     {StudentReturner()}
