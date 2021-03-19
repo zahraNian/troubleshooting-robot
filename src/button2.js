@@ -11,6 +11,7 @@ const Column=styled.div({
   margin:'10px',
   boxShadow:'var(--shadow)',
   fontFamily:'title',
+  border:'2px solid var(--lightBlue)',
   height:'180px',
   '&>div.number':{
     fontFamily:'var(--text)',
@@ -26,21 +27,6 @@ const Column=styled.div({
     marginTop:'10px',
     color:'var(--subText)'
   },
-  '&>a':{
-      borderRadius:'var(--borderRadius-div)',
-      backgroundColor:'var(--lightBlue)',
-      color:'var(--blue)',
-      fontFamily:'btnText',
-      fontSize:'15px',
-      width:'150px',
-      height:'40px',
-      textAlign:'center',
-      paddingTop:'10px',
-      boxSizing:'border-box',
-      marginBottom:'15px',
-      fontWeight:'bold',
-      textDecoration: 'none'
-  }
 })
 
 export default function Button(props){
@@ -49,7 +35,7 @@ export default function Button(props){
       <Column>
         <div className='number'>{props.number}</div>
         <div className='text'>{props.text}</div>
-        <Link to={props.link}>مشاهده همه</Link>
+        <Link to={props.link}></Link>
       </Column>
     </div>
   )

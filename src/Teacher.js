@@ -128,7 +128,7 @@ export default function Teacher(props){
     const [Name,setName]=useState()
     const [Code,setCode]=useState()
     const [Lesson,setLesson]=useState()
-    const [arr,setArr]=useState([]) 
+ 
     
     function AddTeachers(){
         {if(Name && Code && Lesson){var data = JSON.stringify({

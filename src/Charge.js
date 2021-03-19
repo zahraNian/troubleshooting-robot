@@ -90,9 +90,6 @@ export default function Charge(){
         axios.get('https://qanda-bot.liara.run/students')
         .then((response)=>{
             setStudentInfo(response.data.filter((s)=>{return s.code==code})) 
-            .then((response)=>{
-                alert(response._id)
-            })
            
         })
         .catch((error)=>{
@@ -104,7 +101,7 @@ export default function Charge(){
     function EditCredit(){
         if(studentInfo){
         var data = JSON.stringify({
-            qs:parseInt(credit)+parseInt(studentInfo[0].qs)
+            qs:parseInt(credit)+parseInt(studentInfo[0].qs)?parseInt(credit)+parseInt(studentInfo[0].qs):studentInfo[0].qs
         })
         var config = {
             method: 'post',
@@ -116,7 +113,7 @@ export default function Charge(){
         }
         axios(config)
             .then(function (response) {
-                alert(`اعتبار ${studentInfo[0].name}  بروز رسانی شد.`)
+                alert(`اعتبار ${studentInfo[0].name}  بروزرسانی شد.`)
                 response.error?alert(response. error):window.location.reload()
             })
             .catch(function (error) {

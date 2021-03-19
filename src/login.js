@@ -68,6 +68,7 @@ const Column=styled.div({
     width:'130px',
     textAlign:'center',
     border:'none',
+    cursor:'pointer'
 
   })
 export default function Login(){
@@ -75,13 +76,8 @@ export default function Login(){
     const[passWord, setPass]=useState()
     const history = useHistory();
     
-      localStorage.setItem('نام کاربری','zahra')
-      localStorage.setItem('رمز عبور', 123)
-      
       function logIn(){
-        let name=localStorage.getItem('نام کاربری')
-        let pass=localStorage.getItem('رمز عبور')
-        if(name === userName && pass === passWord){
+        if('admin' === userName && 'barsa-admin' === passWord){
         history.push("/home")
         localStorage.setItem('isLogin',true)
         }

@@ -1,12 +1,14 @@
 import styled from 'styled-components'
 import './App.css';
 import Button from './Button.js'
+import Button1 from './button2.js'
 import Charge from './Charge.js'
 import Student from './Student.js'
 import Teacher from './Teacher.js'
 import {BrowserRouter as Router,Route, Switch} from 'react-router-dom'
-import TeachersList from './teachersList.js'
-import StudentsList from './studentsList.js'
+import { useState,useEffect } from 'react';
+import axios from 'axios'
+
 
 const Row=styled.div({
   display:'flex',
@@ -45,8 +47,18 @@ const Column=styled.div({
   }
 })
 
-
 export default function Page(){
+  const[info,setInfo]=useState([])
+  const[isEffected, setIsEffected]=useState(false)
+  useEffect(()=>{if(!isEffected)
+    {setIsEffected(true)
+    axios.get(`https://qanda-bot.liara.run/`)
+    .then((response)=>{
+        setInfo(response.data)})
+    .catch(function (error) {
+          console.log(error)
+          })        
+  }})
   return(
     <div>
       
@@ -56,10 +68,10 @@ export default function Page(){
             <h1 > ربات رفع اشکال بارسا </h1>
             <h2>آمار در یک نگاه</h2>
             <Row>
-              <Button number={global.convertNumberFromEtoP(243)} text="دانش آموز" link='/studentsList'/>
-              <Button number={global.convertNumberFromEtoP(41)} text="معلم"  link='/teacherList'/>
-              <Button number={global.convertNumberFromEtoP(765)} text="سوال" />
-              <Button number={global.convertNumberFromEtoP(980)} text="اعتبار" />
+              <Button number={global.convertNumberFromEtoP(info.students ? info.students : null)} text="دانش آموز" link='/studentsList'/>
+              <Button number={global.convertNumberFromEtoP(info.teachers ? info.teachers : null)} text="معلم"  link='/teacherList'/>
+              <Button1 number={global.convertNumberFromEtoP(info.questions ? info.questions : null)} text="سوال" />
+              <Button1 number={global.convertNumberFromEtoP(info.questions ? info.questions : null)} text="اعتبار" />
             </Row>
             <Charge/>
             <Row className="third">

@@ -76,7 +76,7 @@ const TitleDiv=styled.div({
     minHeight:'50px',
     margin:'5px',
     borderRadius:'30px',  
-    fontSize:'14px',
+    fontSize:'12px',
     backgroundColor:'#c6e2f5',  
     
 })
@@ -105,33 +105,28 @@ const Row=styled.div({
 const First=styled.div({
         marginRight:'20px',
         marginTop:'13px',
-        width:'50%',
+        width:'65%',
         textAlign:'right',
     })
 const Second=styled.div({
         marginTop:'13px',
-        width:'35%',
+        width:'55%',
         textAlign:'right'
     })
 const Third=styled.div({
         marginTop:'13px',
-        width:'30%',
+        width:'70%',
         textAlign:'right'
     })
 const Fourth=styled.div({
         marginTop:'13px',
-        width:'50%',
+        width:'60%',
         textAlign:'right'
     })
 const Fifth=styled.div({
         marginTop:'13px',
-        width:'45%',
-        textAlign:'right'
-    })
-const Sixth=styled.div({
         marginLeft:'20px',
-        marginTop:'13px',
-        width:'10%',
+        width:'15%',
         textAlign:'right'
     })
     
@@ -149,36 +144,25 @@ export default function StudentsList(){
                 .catch((error) => {
                     console.log(error);   
     })}});
-const StudentReturner=()=>{return studentList.map((item)=>{return(<InfoDiv>
+const StudentReturner=()=>{let _arr=studentList.filter((s)=>{return (s.name? s.name.includes(search): null) || (s.code? s.code.includes(search): null) || (s.subject? s.subject.includes(search): null)}) ||studentList; if(_arr.length == 0){_arr=studentList} return _arr.map((item)=>{return(<InfoDiv>
                                                                 <Link to={`/studentInfo/${item._id}`}>
                                                                 <Row>  
                                                                     <First>{item.name}</First>
                                                                     <Second>{item.code}</Second> 
                                                                     <Third>{item.subject}</Third> 
                                                                     <Fourth>{item.qs}</Fourth>
-                                                                    <Fifth>{item.credit}</Fifth>
+                                                                    <Fifth>{item.qs}</Fifth>
                                                                 </Row>
                                                                 </Link>
                                                               </InfoDiv>)})}
 
 
-function Filter(){  
-    return studentList.filter((s)=>{return (s.name==search) || (s.code == search) || (s.subject == search)}).map((item)=>{return(<InfoDiv style={{backgroundColor:'lightGray'}}>
-      <Link  to={`/teacherInfo/${item._id}`}>
-      <Row>  
-          <First>{item.name}</First>
-          <Second>{item.code}</Second> 
-          <Third>{item.subject}</Third> 
-          <Fourth>{item.qs}</Fourth>
-      </Row>
-      </Link>
-  </InfoDiv>)})
-}
+
 
     return(
         <Container>
             <H1>ربات رفع اشکال بارسا</H1>
-            <Row className='Top'><H2>لیست دانش آموزان</H2><Search onKeyDown={(e)=>{if(e.key == "Enter"){Filter()}}} placeholder='جستجو' onChange={(e)=>{setSearch(e.target.value)}}></Search></Row>
+            <Row className='Top'><H2>لیست دانش آموزان</H2><Search placeholder='جستجو' onChange={(e)=>{setSearch(e.target.value)}}></Search></Row>
             <Column className='Content'>
                 <TitleDiv>
                     <Row>
@@ -189,7 +173,7 @@ function Filter(){
                         <Fifth>اعتبار</Fifth>
                     </Row>
                 </TitleDiv>
-                {Filter()}
+               
                 {StudentReturner()}
             </Column>
         </Container> 

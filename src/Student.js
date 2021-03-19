@@ -108,7 +108,8 @@ const Column=styled.div({
             textDecoration: 'none',
             width:'130px',
             textAlign:'center',
-            border:'none'
+            border:'none',
+            cursor:'pointer'
         }
     }    
 })
@@ -118,13 +119,14 @@ export default function Srudent(props){
     const [Grade,setGrade]=useState([])
     const [Majors,setMajors]=useState([]) 
     const [Credit,setCredit]=useState([]) 
-    const [subject, setSubject]=useState({paye:'Grade',reshte:'Majors',})
+
     function AddStudents(){
-        if(Name && Code && Grade && Credit){var data = JSON.stringify({
+        {if(Name.length!==0 && Code.length!==0 && Grade.length!==0 && Majors.length!==0 && Credit.length!==0){var data = JSON.stringify({
             name:Name,
             code:Code,
             subject:Grade+' '+Majors,
             qs:Credit
+
         })
 
         var config = {
@@ -145,7 +147,7 @@ export default function Srudent(props){
             console.log(error)
             })
     }
-        else{alert('لطفا همه ی مقادیر را پر کنید.')}  
+        else{alert('لطفا همه ی مقادیر را پر کنید.')}  }
     }
     return(
         <Total>

@@ -111,6 +111,7 @@ const Column=styled.div({
     width:'130px',
     textAlign:'center',
     border:'none',
+    cursor:'pointer'
   })
   const H1=styled.h1({
       textAlign:'rigth',
@@ -164,10 +165,10 @@ export default function TeacherInfo(){
     const {teacherId}=useParams()
     
     function EditTeachers(){
-        if(Name && Code && Lesson){var data = JSON.stringify({
-            name:Name,
-            code:Code,
-            subject:Lesson
+        var data = JSON.stringify({
+            name:Name? Name:teacherInfo.name,
+            code:Code? Code:teacherInfo.code,
+            subject:Lesson? Lesson:teacherInfo.Lesson
         })
         var config = {
             method: 'post',
@@ -185,8 +186,7 @@ export default function TeacherInfo(){
             .catch(function (error) {
             console.log(error)
             })
-    }
-        else{alert('لطفا همه ی مقادیر را پر کنید.')}}
+        }
       
       useEffect(()=>{if(!isEffected){
         setIsEffected(true)

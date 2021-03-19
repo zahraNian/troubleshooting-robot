@@ -5,21 +5,29 @@ import StudentInfo from './studentInfo.js'
 import TeacherInfo from './teacherInfo.js'
 import TeachersList from './teachersList.js'
 import StudentsList from './studentsList.js'
-
-const Gholam=localStorage.getItem('isLogin');
+import ProtectedRoute from './protectedRoute.js'
 
 export default function App(){
-  
   return(
     <Router>
       <Switch>
-        <Route path='/login' component={Login} exact></Route>
-         <Route component={Page} path='/home'></Route>
-       <Route path='/studentsList' component={StudentsList}></Route>
-        <Route path='/teacherList' component={TeachersList}></Route>
-        <Route path='/teacherInfo/:teacherId' component={TeacherInfo}></Route>
-        <Route path='/studentInfo/:studentId' component={StudentInfo}></Route>
+          <Route path='/login' component={Login} exact></Route>
+          <ProtectedRoute exact path='/home' component={Page} />
+          <ProtectedRoute  path="/studentsList" component={StudentsList} />
+          <ProtectedRoute  path="/teacherList" component={TeachersList} />
+          <ProtectedRoute  path="/teacherInfo/:teacherId" component={TeacherInfo} />
+          <ProtectedRoute  path="/studentInfo/:studentId" component={StudentInfo} />
+          
       </Switch>
     </Router>
   )
 }
+
+
+
+
+
+
+
+
+

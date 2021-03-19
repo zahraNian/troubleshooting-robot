@@ -164,9 +164,9 @@ export default function StudentInfo(){
     const[studentInfo, setStudentInfo]=useState([])
 
     function EditStudent(){
-        if(Name && Code && Grade && Majors){var data = JSON.stringify({
-            name:Name,
-            code:Code,
+        if(Grade && Majors){var data = JSON.stringify({
+            name:Name? Name:studentInfo.name,
+            code:Code? Code:studentInfo.code,
             subject:Grade+' '+Majors,
         })
         var config = {
@@ -179,14 +179,14 @@ export default function StudentInfo(){
         }
         axios(config)
             .then(function (response) {
-                alert('اطلاعات شماویرایش شد.')
+                alert('اطلاعات شما ویرایش شد.')
                 response.error?alert(response. error):window.location.reload()
             })
             .catch(function (error) {
             console.log(error)
-            })
+            })}
+            else alert('لطفا پایه و رشته را وارد نمایید.')
     }
-        else{alert('لطفا همه ی مقادیر را پر کنید.')}}
 
     useEffect(()=>{if(!isEffected)
         {setIsEffected(true)
