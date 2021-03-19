@@ -89,8 +89,10 @@ const InfoDiv=styled.div({
     fontSize:'12px',
     paddingBottom:'5px',
     boxSizing:'border-box',
-    '&>a':{
-        textDecoration:'none'
+    color:'black'
+,    '&>a':{
+        textDecoration:'none',
+        color:'black'
     }
 })
 const Row=styled.div({
@@ -137,6 +139,7 @@ const Sixth=styled.div({
 export default function StudentsList(){
     const[studentList, setStudentList]=useState([])
     const [isEffected, setIsEffected]=useState(false)
+    const [search, setSearch]=useState()
     useEffect(()=>{if(!isEffected){
         setIsEffected(true)
         axios.get('https://qanda-bot.liara.run/students')
@@ -159,16 +162,23 @@ const StudentReturner=()=>{return studentList.map((item)=>{return(<InfoDiv>
                                                               </InfoDiv>)})}
 
 
-
-
-
-
-
+function Filter(){  
+    return studentList.filter((s)=>{return (s.name==search) || (s.code == search) || (s.subject == search)}).map((item)=>{return(<InfoDiv style={{backgroundColor:'lightGray'}}>
+      <Link  to={`/teacherInfo/${item._id}`}>
+      <Row>  
+          <First>{item.name}</First>
+          <Second>{item.code}</Second> 
+          <Third>{item.subject}</Third> 
+          <Fourth>{item.qs}</Fourth>
+      </Row>
+      </Link>
+  </InfoDiv>)})
+}
 
     return(
         <Container>
             <H1>ربات رفع اشکال بارسا</H1>
-            <Row className='Top'><H2>لیست دانش آموزان</H2><Search placeholder='جستجو'></Search></Row>
+            <Row className='Top'><H2>لیست دانش آموزان</H2><Search onKeyDown={(e)=>{if(e.key == "Enter"){Filter()}}} placeholder='جستجو' onChange={(e)=>{setSearch(e.target.value)}}></Search></Row>
             <Column className='Content'>
                 <TitleDiv>
                     <Row>
@@ -179,7 +189,8 @@ const StudentReturner=()=>{return studentList.map((item)=>{return(<InfoDiv>
                         <Fifth>اعتبار</Fifth>
                     </Row>
                 </TitleDiv>
-                    {StudentReturner()}
+                {Filter()}
+                {StudentReturner()}
             </Column>
         </Container> 
     )

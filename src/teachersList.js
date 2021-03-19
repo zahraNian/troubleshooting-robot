@@ -88,8 +88,10 @@ const InfoDiv=styled.div({
     borderRadius:'30px',
     fontSize:'12px',
     paddingBottom:'5px',
+    color:'black',
     '&>a':{
-        textDecoration:'none'
+        textDecoration:'none',
+        color:'black'
     }
 })
 const Row=styled.div({
@@ -139,22 +141,34 @@ export default function TeacherList(){
                         })
 
     }})
-
     const TeacherReturner=()=>{return teacherList.map((item)=>{return(<InfoDiv >
-                                                                <Link to={`/teacherInfo/${item._id}`}>
-                                                                <Row>  
-                                                                    <First>{item.name}</First>
-                                                                    <Second>{item.code}</Second> 
-                                                                    <Third>{item.subject}</Third> 
-                                                                    <Fourth>{item.qs}</Fourth>
-                                                                </Row>
-                                                                </Link>
-                                                            </InfoDiv>)})}
+        <Link   to={`/teacherInfo/${item._id}`}>
+        <Row>  
+            <First>{item.name}</First>
+            <Second>{item.code}</Second> 
+            <Third>{item.subject}</Third> 
+            <Fourth>{item.qs}</Fourth>
+        </Row>
+        </Link>
+    </InfoDiv>)})}
+
+    function Filter(){  
+      return teacherList.filter((s)=>{return (s.name==search) || (s.code == search) || (s.subject == search)}).map((item)=>{return(<InfoDiv style={{backgroundColor:'lightGray'}}>
+        <Link  to={`/teacherInfo/${item._id}`}>
+        <Row>  
+            <First>{item.name}</First>
+            <Second>{item.code}</Second> 
+            <Third>{item.subject}</Third> 
+            <Fourth>{item.qs}</Fourth>
+        </Row>
+        </Link>
+    </InfoDiv>)})
+}
                                                      
     return(
         <Container>
             <H1>ربات رفع اشکال بارسا</H1>
-            <Row className='Top'><H2>لیست معلمان</H2><Search placeholder='جستجو' onChange={(e)=>{setSearch(e.target.value)}} ></Search></Row>
+            <Row className='Top'><H2>لیست معلمان</H2><Search onKeyDown={(e)=>{if(e.key == "Enter"){Filter()}}} placeholder='جستجو' onChange={(e)=>{setSearch(e.target.value)}} ></Search></Row>
             <Column className='Content'>
                 <TitleDiv>
                     <Row>
@@ -164,6 +178,7 @@ export default function TeacherList(){
                         <Fourth>سوالات</Fourth>
                     </Row>
                 </TitleDiv>
+                {Filter()}
                 {TeacherReturner()}
             </Column>
         </Container> 
