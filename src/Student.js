@@ -164,6 +164,7 @@ export default function Srudent(props){
                     <Column>
                         <h2>پایه</h2>
                         <select onChange={(e)=>{setGrade(e.target.value)}}>
+                            <option >انتخاب کنید</option>
                             <option value='دوازدهم'>دوازدهم</option>
                             <option value='یازدهم'>یازدهم</option>
                             <option value='دهم'>دهم</option>

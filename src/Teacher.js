@@ -172,6 +172,7 @@ export default function Teacher(props){
                 <Column className='title'>
                     <h2>درس</h2>
                     <select onChange={(e)=>{setLesson(e.target.value)}}>
+                        <option >انتخاب کنید</option>
                         <option value='شیمی'>شیمی</option>
                         <option value='فیزیک'>فیزیک</option>
                         <option value='زیست'>زیست</option>
