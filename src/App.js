@@ -13,6 +13,24 @@ import StudentsList from "./studentsList.js";
 import ProtectedRoute from "./protectedRoute.js";
 
 export default function App() {
+  global.subjects = {
+    chem: "شیمی",
+    phys: "فیزیک",
+    bio: "زیست",
+    math1: "هندسه پایه و تحلیلی و گسسته",
+    math2: "حسابان 1و2(رشته ریاضی)",
+    math3: "ریاضیات تجربی(پایه یازدهم و دوازدهم)",
+    math4: "ریاضیات پایه دهم",
+    math5: "ریاضی متوسطه اول",
+    lit: "ادبیات و عربی و دروس اختصاصی انسانی",
+  };
+  global.optionRetuner = () => {
+    let _optionsArr = [];
+    for (const [key, value] of Object.entries(global.subjects)) {
+      _optionsArr.push(<option value={key}>{value}</option>);
+    }
+    return _optionsArr;
+  };
   return (
     <Router>
       <Switch>
