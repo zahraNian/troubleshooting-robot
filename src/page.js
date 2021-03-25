@@ -70,31 +70,30 @@ export default function Page() {
           <h2>آمار در یک نگاه</h2>
           <Row>
             <Button
-              number={global.convertNumberFromEtoP(
-                info.students ? info.students : null
-              )}
+              number={global.convertNumberFromEtoP(info?.students)}
               text="دانش آموز"
               link="/studentsList"
             />
             <Button
-              number={global.convertNumberFromEtoP(
-                info.teachers ? info.teachers : null
-              )}
+              number={global.convertNumberFromEtoP(info?.teachers)}
               text="معلم"
               link="/teacherList"
             />
             <Button
               number={global.convertNumberFromEtoP(
-                info.teachers ? info.teachers : null
+                info.unanswered
+                  ? info.unanswered.reduce((acc, current) => {
+                      console.log(acc);
+                      return acc + parseInt(current.count);
+                    }, 0)
+                  : null
               )}
-              text="سوالات بی پاسخ"
+              text="سوال های بی پاسخ"
               link="/unanswered"
             />
             <Button1
-              number={global.convertNumberFromEtoP(
-                info.questions ? info.questions : null
-              )}
-              text="سوال"
+              number={global.convertNumberFromEtoP(info?.questions)}
+              text="تعداد سوال های روزانه"
             />
           </Row>
           <Charge />

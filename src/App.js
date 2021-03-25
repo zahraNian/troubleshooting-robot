@@ -8,7 +8,7 @@ import Login from "./login.js";
 import Page from "./page.js";
 import StudentInfo from "./studentInfo.js";
 import TeacherInfo from "./teacherInfo.js";
-import Unanswered from "./unanswered"
+import Unanswered from "./unanswered";
 import TeachersList from "./teachersList.js";
 import StudentsList from "./studentsList.js";
 import ProtectedRoute from "./protectedRoute.js";

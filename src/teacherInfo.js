@@ -2,22 +2,24 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import {  Bar } from 'react-chartjs-2';
+import { Bar } from "react-chartjs-2";
 const Container = styled.div({
   display: "flex",
   flexDirection: "column",
   justifyContent: "flex-start",
   alignItems: "center",
-  width: "100%",
+  width: "calc( 100% - 100px)",
   height: "100%",
   backgroundColor: "var(--back)",
   fontFamily: "text",
   direction: "rtl",
+  alignSelf: "center",
+  justifySelf: "center",
   "&>div.Content": {
     borderRadius: "25px",
     boxShadow: "var(--Shadow)",
     width: "calc(100% - 40px)",
-  }
+  },
 });
 const Column = styled.div({
   display: "flex",
@@ -35,7 +37,6 @@ const Column = styled.div({
     flexFlow: "row wrap",
     alignItems: "flex-start",
     borderRadius: "25px",
-    boxShadow: "var(--shadow)",
     justifyContent: "space-around",
   },
   "&>div.B": {
@@ -154,53 +155,52 @@ const Select = styled.select({
     backgroundColor: "#c5c5c5",
   },
 });
-  const Chart=styled.div({
-   width:'calc(100% - 20px)',
-   heigth:'300px',
- })
- const Box=styled.div({
-   width:'110px', 
-   height:'50px',
-   borderRadius:'10px',
-   border:'2px solid rgb(255, 99, 132)',
-   backgroundColor:'white',
-   paddingTop:'15px',
-   boxSizing:'border-box',
-   textAlign:'center'
- })
- const Score=styled.div({
-  width:'280px',
-  display:'flex',
-  flexDirection:'row',
-  alignItems:'center',
-  justifyContent:'flex-end',
-  marginTop:'40px',
-  '&>h2':{
-    marginRight:'0px',
-    fontSize:'18px'
-  }
- })
- const Graph=styled.div({
-  width:'calc(100% - 20px)',
-  display:'flex',
-  flexDirection:'column',
-  alignItems:'center',
-  justifyContent:'center',
-  marginTop:'50px',
- })
- const Second=styled.div({
+const Chart = styled.div({
+  width: "calc(100% - 20px)",
+  heigth: "300px",
+});
+const Box = styled.span({
+  width: "110px",
+  height: "50px",
+  borderRadius: "10px",
+  border: "2px solid rgb(255, 99, 132)",
+  backgroundColor: "white",
+  paddingTop: "15px",
+  boxSizing: "border-box",
+  textAlign: "center",
+});
+const Score = styled.div({
+  width: "280px",
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "flex-end",
+  marginTop: "40px",
+  "&>h2": {
+    marginRight: "0px",
+    fontSize: "18px",
+  },
+});
+const Graph = styled.div({
+  width: "calc(100% - 20px)",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  marginTop: "50px",
+});
+const Second = styled.div({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
   borderRadius: "25px",
   backgroundColor: "white",
-  marginTop:'40px',
-  width:'calc(100% - 40px)',
-  maxWidth:'800px',
-  minWidth:'280px',
-  boxShadow:'0px 0px 5px 5px silver'
- })
+  marginTop: "40px",
+  width: "calc(100% - 40px)",
+  maxWidth: "800px",
+  minWidth: "280px",
+});
 
 export default function TeacherInfo() {
   const [Name, setName] = useState();
@@ -211,7 +211,7 @@ export default function TeacherInfo() {
   const [teacherList, setTeacherList] = useState([]);
   const [teacherInfo, setTeacherInfo] = useState([]);
   const { teacherId } = useParams();
-  const [Show,setShow]=useState()
+  const [Show, setShow] = useState();
 
   function EditTeachers() {
     var data = JSON.stringify({
@@ -250,26 +250,58 @@ export default function TeacherInfo() {
         });
     }
   });
-alert(teacherInfo.name?teacherInfo.name:null)
-  const data= {
-    labels: ['1', '2', '3', '4', '5','1', '2', '3', '4', '5', '5','1', '2', '3', '4', '5'],
-    datasets: [{
-        label: 'امتیاز روزانه',
-        backgroundColor: 'rgb(255, 99, 132)',
-        data: [teacherInfo[0], 10, 5, 2, 20, 190, 50, 9, 23]
-    }]
-}
-function Visibility(){
-  return(setShow(!Show))
-}
+  /* alert(teacherInfo.name?teacherInfo.name:null)
+   */
 
+  function Visibility() {
+    return setShow(!Show);
+  }
+  const avarage = () => {
+    let _rat = teacherInfo.rating;
+    return (
+      _rat.reduce((acc, current) => {
+        return acc + current;
+      }) / _rat.length
+    );
+  };
+  const chartReturner = () => {
+    let _lables = [];
+    teacherInfo.dRatings.forEach((la, index) => {
+      _lables.push("روز" + (index + 1));
+    });
+    let data = {
+      labels: _lables,
+      datasets: [
+        {
+          label: "امتیاز های روزانه",
+          backgroundColor: "rgb(255, 99, 132)",
+          data: teacherInfo.dRatings.map(it => {
+            return it + 1;
+          }),
+        },
+      ],
+    };
+    return <Bar data={data} height="50vh" width="90vw" />;
+  };
   return (
     <Container>
       <H1>ربات رفع اشکال بارسا</H1>
-      
 
       <H2>مشخصات معلم</H2>
       <Column className="Content">
+        <Second>
+          <Score>
+            <H2>امتیاز روزانه :</H2>
+            <Box>{teacherInfo.rating ? avarage() : null}</Box>
+          </Score>
+          <Score>
+            <H2>:سوال پاسخ داده شده امروز</H2>
+            <Box>{teacherInfo.rating ? teacherInfo.rating.length : null}</Box>
+          </Score>
+          <Graph>
+            <Chart>{teacherInfo.dRatings ? chartReturner() : null}</Chart>
+          </Graph>
+        </Second>
         <Row className="Total">
           <Column className="RowBigColumn">
             <Column className="Large">
@@ -321,13 +353,6 @@ function Visibility(){
           </Column>
         </Row>
       </Column>
-      <Second>
-        <Score><H2>امتیاز روزانه :</H2><Box>{teacherInfo.rating}</Box></Score>
-        <Score><H2>امتیاز روزهای گذشته :</H2><Box>{teacherInfo.dRating ?teacherInfo.dRating:null}</Box></Score>
-        <Graph>
-          <Chart ><Bar data={data} height='150vh' width='200vw'/></Chart>
-        </Graph>
-      </Second>
     </Container>
   );
 }
