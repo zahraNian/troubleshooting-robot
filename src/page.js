@@ -83,17 +83,18 @@ export default function Page() {
               text="معلم"
               link="/teacherList"
             />
-            <Button1
+            <Button
               number={global.convertNumberFromEtoP(
-                info.questions ? info.questions : null
+                info.teachers ? info.teachers : null
               )}
-              text="سوال"
+              text="سوالات بی پاسخ"
+              link="/unanswered"
             />
             <Button1
               number={global.convertNumberFromEtoP(
                 info.questions ? info.questions : null
               )}
-              text="اعتبار"
+              text="سوال"
             />
           </Row>
           <Charge />

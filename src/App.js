@@ -8,6 +8,7 @@ import Login from "./login.js";
 import Page from "./page.js";
 import StudentInfo from "./studentInfo.js";
 import TeacherInfo from "./teacherInfo.js";
+import Unanswered from "./unanswered"
 import TeachersList from "./teachersList.js";
 import StudentsList from "./studentsList.js";
 import ProtectedRoute from "./protectedRoute.js";
@@ -37,6 +38,7 @@ export default function App() {
         <Route path="/login" component={Login}></Route>
         <ProtectedRoute path="/studentsList" component={StudentsList} />
         <ProtectedRoute path="/teacherList" component={TeachersList} />
+        <ProtectedRoute path="/unanswered" component={Unanswered} />
         <ProtectedRoute
           path="/teacherInfo/:teacherId"
           component={TeacherInfo}
