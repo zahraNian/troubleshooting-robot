@@ -14,7 +14,7 @@ const Column=styled.div({
   border:'2px solid var(--lightBlue)',
   height:'180px',
   '&>div.number':{
-    fontFamily:'var(--text)',
+    fontFamily:'text',
       fontSize:'35px',
       fontWeight:'bold',
       marginTop:'15px',

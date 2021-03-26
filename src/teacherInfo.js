@@ -8,7 +8,7 @@ const Container = styled.div({
   flexDirection: "column",
   justifyContent: "flex-start",
   alignItems: "center",
-  width: "calc( 100% - 100px)",
+  width: "calc( 100% - 20px)",
   height: "100%",
   backgroundColor: "var(--back)",
   fontFamily: "text",
@@ -18,7 +18,7 @@ const Container = styled.div({
   "&>div.Content": {
     borderRadius: "25px",
     boxShadow: "var(--Shadow)",
-    width: "calc(100% - 40px)",
+    width: "calc(100% - 20px)",
   },
 });
 const Column = styled.div({
@@ -170,14 +170,14 @@ const Box = styled.span({
   textAlign: "center",
 });
 const Score = styled.div({
-  width: "280px",
+  width: "260px",
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
   justifyContent: "flex-end",
   marginTop: "40px",
   "&>h2": {
-    marginRight: "0px",
+    marginRight: "-20px",
     fontSize: "18px",
   },
 });
@@ -211,7 +211,6 @@ export default function TeacherInfo() {
   const [teacherList, setTeacherList] = useState([]);
   const [teacherInfo, setTeacherInfo] = useState([]);
   const { teacherId } = useParams();
-  const [Show, setShow] = useState();
 
   function EditTeachers() {
     var data = JSON.stringify({
@@ -253,9 +252,6 @@ export default function TeacherInfo() {
   /* alert(teacherInfo.name?teacherInfo.name:null)
    */
 
-  function Visibility() {
-    return setShow(!Show);
-  }
   const avarage = () => {
     let _rat = teacherInfo.rating;
     return (
@@ -295,7 +291,7 @@ export default function TeacherInfo() {
             <Box>{teacherInfo.rating ? avarage() : null}</Box>
           </Score>
           <Score>
-            <H2>:سوال پاسخ داده شده امروز</H2>
+            <H2>سوال های پاسخ داده شده امروز : </H2>
             <Box>{teacherInfo.rating ? teacherInfo.rating.length : null}</Box>
           </Score>
           <Graph>

@@ -5,7 +5,4 @@ html {
   height: 100%;
   background-color: var(--back);
 }
-#root {
-  display: flex;
-  justify-content: center;
-}
+

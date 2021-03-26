@@ -17,13 +17,30 @@ const Column = styled.div({
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
-  width: "calc(100% - 20px)",
+  width: "calc(100% - 40px)",
+  minWidth:'260px',
+  maxWidth:'600px',
   backgroundColor: "white",
   padding: "50px 0px",
   borderRadius: "40px",
   textAlign: "center",
   boxShadow: "var(--shadow)",
+  border:'2px solid var(--lightBlue)',
+  fontFamily:'title',
+  lineHeight:'3'
 });
+const Lesson= styled.div({
+fontWeight:'bold',
+width:'calc(100% - 2px)',
+color:'var(--gray)',
+fontSize:'17px',
+backgroundColor:'var(--lightBlue)',
+"&>span.right":{
+  width:'100%',
+  textAlign:'right',
+  fontSize:'15px',
+}
+})
 
 export default function Unanswered() {
   const [effected, setIsEffected] = useState(false);
@@ -46,10 +63,10 @@ export default function Unanswered() {
     if (info) {
       return info.unanswered.map(subject => {
         return (
-          <div>
-            <span>{global.subjects[subject.name]}:</span>
-            <span> {global.convertNumberFromEtoP(subject.count)} سوال</span>
-          </div>
+          <Lesson>
+            <span className='right'>{global.subjects[subject.name]}:</span>
+            <span className='left'> {global.convertNumberFromEtoP(subject.count)} سوال</span>
+          </Lesson>
         );
       });
     }

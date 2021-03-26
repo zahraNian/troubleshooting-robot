@@ -8,7 +8,7 @@ const Column=styled.div({
     justifyContent:'flex-start',
     alignItems:'center',
     width:'calc(100% - 20px)',
-    marginTop:'40px',
+    marginTop:'40px'
 })    
 const Row=styled.div({
     display:'flex',
