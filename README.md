@@ -1,3 +1,10 @@
+Project : Barsa school lesson troubleshooting robot
+
+Project description : A robot for students and teachers to register and edit information, Also submit questions and daily rating.
+The whole site has been responsive.
+Technologies : React js , Styled Components, Axios  
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
